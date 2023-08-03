@@ -6,9 +6,7 @@ import React from 'react'
 import { useLoginForm } from '@/features/components/loginForm/useLoginForm'
 import styles from './LoginForm.module.css'
 
-export type LoginFormProps = {}
-
-export const LoginForm = (props: LoginFormProps) => {
+export const LoginForm = () => {
   const {
     username,
     password,

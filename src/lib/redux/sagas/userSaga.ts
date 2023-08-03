@@ -1,5 +1,4 @@
-import { call, takeEvery } from '@redux-saga/core/effects'
-import { redirect } from 'next/navigation'
+import { takeEvery } from '@redux-saga/core/effects'
 import { userLogout } from '@/lib/redux/slices/userSlice/userSlice'
 
 function* logoutUser(action: ReturnType<typeof userLogout>) {

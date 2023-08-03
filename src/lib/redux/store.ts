@@ -3,8 +3,6 @@ import { rootReducer } from '@/lib/redux/rootReducer'
 import createSagaMiddleware from '@redux-saga/core'
 import { fork } from '@redux-saga/core/effects'
 import { loginFormSaga } from '@/lib/redux/sagas/loginFormSaga'
-import { loginSetIsSubmitting } from '@/lib/redux/slices/loginFormSlice/loginFormSlice'
-import { userLogout } from '@/lib/redux/slices/userSlice/userSlice'
 import { userSaga } from '@/lib/redux/sagas/userSaga'
 
 let sagaMiddleware = createSagaMiddleware()

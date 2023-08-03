@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { clearTokenFromCookies } from '@/features/helpers/cookies/clearTokenFromCookies'
-import { redirect } from 'next/navigation'
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context'
 
 type userSliceState = {

@@ -1,6 +1,5 @@
 import { Secret, sign } from 'jsonwebtoken'
 import { NextResponse } from 'next/server'
-import { hashPwd } from '@/features/helpers/utils/hashPwd'
 import { comparePwdWithHash } from '@/features/helpers/utils/comparePwdWithHash'
 import prisma from '@/lib/prisma/prisma'
 import { prismaUserProps } from '@/lib/prisma/types'
