@@ -24,7 +24,6 @@ export async function POST(req: Request, res: Response) {
   const isPwdCorrect = comparePwdWithHash(password, user.pwdHash)
 
   if (!isPwdCorrect) {
-    console.log('Nasla jsem uzivatele, ale heslo je nespravne')
     return NextResponse.json({ message: 'Login information is invalid.' }, { status: 403 })
   }
 

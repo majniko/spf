@@ -6,7 +6,7 @@ import { Button } from '@mui/material'
 import React from 'react'
 import { useLandingPage } from '@/features/pages/landingPage/useLandingPage'
 
-export const LandingPage = () => {
+export const LandingPage = (): React.ReactElement => {
   const { onLogoutButtonClick } = useLandingPage()
 
   return (

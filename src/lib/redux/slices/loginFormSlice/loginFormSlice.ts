@@ -9,7 +9,7 @@ export type loginFormSliceState = {
   isNetworkError: boolean
 }
 
-export const initialState: loginFormSliceState = {
+const initialState: loginFormSliceState = {
   username: '',
   password: '',
   isSubmitting: false,
