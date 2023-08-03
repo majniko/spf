@@ -1,11 +1,21 @@
 export const localization = {
   en: {
-    username: 'Username:',
-    email: 'Email:',
-    password: 'Password:',
-    login: 'Login',
-    logout: 'Logout',
-    loginError: 'Username or password is incorrect',
-    networkError: 'Network error, please contact the admin.',
+    user: {
+      username: 'Username:',
+      email: 'Email:',
+      password: 'Password:',
+    },
+    loginForm: {
+      login: 'Login',
+      logout: 'Logout',
+      loginError: 'Username or password is incorrect',
+    },
+    registerForm: {
+      register: 'Register',
+      usernameError: 'Username is already taken.',
+    },
+    errors: {
+      networkError: 'Network error, please try again later.',
+    },
   },
 }

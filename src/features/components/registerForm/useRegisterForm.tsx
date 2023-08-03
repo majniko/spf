@@ -2,15 +2,15 @@ import { useAppDispatch, useAppSelector } from '@/lib/redux/hooks'
 import React, { useCallback } from 'react'
 import {
   registerSetEmail,
+  registerSetIsSubmitting,
   registerSetPassword,
   registerSetUsername,
 } from '@/lib/redux/slices/registerFormSlice/registerFormSlice'
 
 export const useRegisterForm = () => {
   const dispatch = useAppDispatch()
-  const { username, email, password, isError, isNetworkError, isSubmitting } = useAppSelector(
-    state => state.registerForm
-  )
+  const { username, email, password, isSubmitting, isUsernameError, isEmailError, isNetworkError, isSuccess } =
+    useAppSelector(state => state.registerForm)
 
   const onUsernameChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,15 +33,22 @@ export const useRegisterForm = () => {
     [dispatch]
   )
 
+  const onRegisterButtonClick = useCallback(() => {
+    dispatch(registerSetIsSubmitting({ isSubmitting: true }))
+  }, [dispatch])
+
   return {
     username,
     email,
     password,
-    isError,
+    isUsernameError,
+    isEmailError,
     isNetworkError,
     isSubmitting,
+    isSuccess,
     onUsernameChange,
     onEmailChange,
     onPasswordChange,
+    onRegisterButtonClick,
   }
 }

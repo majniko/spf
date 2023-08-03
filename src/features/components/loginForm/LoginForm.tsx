@@ -28,7 +28,7 @@ export const LoginForm = () => {
         error={isError}
         value={username}
         onChange={onUsernameChange}
-        label={localization.en.username}
+        label={localization.en.user.username}
       />
       <TextField
         className={styles.textField}
@@ -38,13 +38,13 @@ export const LoginForm = () => {
         error={isError}
         value={password}
         onChange={onPasswordChange}
-        label={localization.en.password}
+        label={localization.en.user.password}
       />
       <Button className={styles.button} variant={'contained'} onClick={onLoginButtonClick}>
-        {localization.en.login}
+        {localization.en.loginForm.login}
       </Button>
-      {isError && <div className={styles.errorText}>{localization.en.loginError}</div>}
-      {isNetworkError && <div className={styles.errorText}>{localization.en.networkError}</div>}
+      {isError && <div className={styles.errorText}>{localization.en.loginForm.loginError}</div>}
+      {isNetworkError && <div className={styles.errorText}>{localization.en.errors.networkError}</div>}
     </div>
   )
 }

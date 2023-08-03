@@ -13,7 +13,7 @@ export const LandingPage = (): React.ReactElement => {
     <div>
       <h1>You successfully logged in.</h1>
       <Button className={styles.button} variant={'contained'} onClick={onLogoutButtonClick}>
-        {localization.en.logout}
+        {localization.en.loginForm.logout}
       </Button>
     </div>
   )

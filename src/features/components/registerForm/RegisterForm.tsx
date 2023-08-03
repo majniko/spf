@@ -10,47 +10,52 @@ export const RegisterForm = (): React.ReactElement => {
     username,
     email,
     password,
-    isError,
-    isNetworkError,
     isSubmitting,
+    isUsernameError,
+    isEmailError,
+    isNetworkError,
+    isSuccess,
     onUsernameChange,
     onEmailChange,
     onPasswordChange,
+    onRegisterButtonClick,
   } = useRegisterForm()
 
   return (
     <div className={styles.registerForm}>
+      isSuccess ??
+      <div className={styles.successText}>success</div>
+      :
       <TextField
         className={styles.textField}
         variant={'filled'}
         id="username"
         size={'small'}
-        error={isError}
+        error={isUsernameError}
         value={username}
         onChange={onUsernameChange}
-        label={localization.en.username}
+        label={localization.en.user.username}
       />
       <TextField
         className={styles.textField}
         variant={'filled'}
         id="email"
         size={'small'}
-        error={isError}
+        error={isEmailError}
         value={email}
         onChange={onEmailChange}
-        label={localization.en.email}
+        label={localization.en.user.email}
       />
       <TextField
         className={styles.textField}
         variant={'filled'}
         id="password"
         size={'small'}
-        error={isError}
         value={password}
         onChange={onPasswordChange}
-        label={localization.en.password}
+        label={localization.en.user.password}
       />
-      <Button />
+      <Button className={styles.button} variant={'contained'} onClick={onRegisterButtonClick} />
     </div>
   )
 }

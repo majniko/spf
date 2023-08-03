@@ -18,37 +18,30 @@ type response = {
   error?: string
 }
 
-function* postLoginSaga(action: ReturnType<typeof loginSetIsSubmitting>) {
-  console.log('saga dispatched')
+function* postLoginForm(action: ReturnType<typeof loginSetIsSubmitting>) {
   const { username, password }: loginFormSliceState = yield select(getLogin)
 
   const response: response = yield call(postLogin, { username, password })
 
-  console.log('response:', response)
-
   if (response.token) {
     const { token, email } = response
-
-    console.log('response:', response)
-
-    yield put({
-      type: userSaveLoginData.type,
-      payload: { username, token, email },
-    })
+    yield put({ type: userSaveLoginData.type, payload: { username, token, email } })
     yield call(saveTokenToCookies, token)
     action.payload.router.push('/landing-page')
     yield put({ type: loginClearForm.type })
     return
   }
 
-  if (response.error === 'network_error') {
-    yield put({ type: loginSetIsNetworkError.type, payload: true })
+  if (response.status === 403) {
+    yield put({ type: loginSetIsError.type, payload: true })
     return
   }
 
-  yield put({ type: loginSetIsError.type, payload: true })
+  if (response.error === 'network_error') {
+    yield put({ type: loginSetIsNetworkError.type, payload: true })
+  }
 }
 
 export function* loginFormSaga() {
-  yield takeLatest(loginSetIsSubmitting.type, postLoginSaga)
+  yield takeLatest(loginSetIsSubmitting.type, postLoginForm)
 }
