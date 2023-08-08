@@ -13,7 +13,7 @@ export async function POST(req: Request, res: Response) {
   })
 
   if (userExists) {
-    return NextResponse.json({ message: 'username_exists' }, { status: 403 })
+    return NextResponse.json({ message: 'username_exists' })
   }
 
   const emailExists: prismaUserProps | null = await prisma.users.findUnique({
@@ -23,7 +23,7 @@ export async function POST(req: Request, res: Response) {
   })
 
   if (emailExists) {
-    return NextResponse.json({ message: 'email_exists' }, { status: 403 })
+    return NextResponse.json({ message: 'email_exists' })
   }
 
   const hashedPwd = hashPwd(password)
@@ -36,5 +36,5 @@ export async function POST(req: Request, res: Response) {
     },
   })
 
-  return NextResponse.json({ message: 'user_created' }, { status: 200 })
+  return NextResponse.json({ message: 'user_created' })
 }

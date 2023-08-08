@@ -34,6 +34,7 @@ export const useRegisterForm = () => {
   )
 
   const onRegisterButtonClick = useCallback(() => {
+    console.log('onRegisterButtonClick')
     dispatch(registerSetIsSubmitting({ isSubmitting: true }))
   }, [dispatch])
 

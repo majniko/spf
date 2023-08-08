@@ -1,4 +1,4 @@
-import { getLogin } from '@/lib/redux/selectors'
+import { getLoginFormState } from '@/lib/redux/selectors'
 import { call, put, select, takeLatest } from '@redux-saga/core/effects'
 import {
   loginClearForm,
@@ -14,12 +14,12 @@ import { saveTokenToCookies } from '@/features/helpers/cookies/saveTokenToCookie
 type response = {
   token: string
   email: string
-  status: number
+  message?: string
   error?: string
 }
 
 function* postLoginForm(action: ReturnType<typeof loginSetIsSubmitting>) {
-  const { username, password }: loginFormSliceState = yield select(getLogin)
+  const { username, password }: loginFormSliceState = yield select(getLoginFormState)
 
   const response: response = yield call(postLogin, { username, password })
 
@@ -32,7 +32,7 @@ function* postLoginForm(action: ReturnType<typeof loginSetIsSubmitting>) {
     return
   }
 
-  if (response.status === 403) {
+  if (response.message === 'invalid_credentials') {
     yield put({ type: loginSetIsError.type, payload: true })
     return
   }

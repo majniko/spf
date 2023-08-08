@@ -5,6 +5,7 @@ import { localization } from '@/features/localization/localization'
 import React from 'react'
 import { useLoginForm } from '@/features/components/loginForm/useLoginForm'
 import styles from './LoginForm.module.css'
+import Link from 'next/link'
 
 export const LoginForm = () => {
   const {
@@ -43,6 +44,7 @@ export const LoginForm = () => {
       <Button className={styles.button} variant={'contained'} onClick={onLoginButtonClick}>
         {localization.en.loginForm.login}
       </Button>
+      <Link href={'/register'}>{localization.en.registerForm.register}</Link>
       {isError && <div className={styles.errorText}>{localization.en.loginForm.loginError}</div>}
       {isNetworkError && <div className={styles.errorText}>{localization.en.errors.networkError}</div>}
     </div>

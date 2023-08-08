@@ -18,17 +18,17 @@ export async function POST(req: Request, res: Response) {
   //console.log("hashedPwd: ", hashPwd(password))
 
   if (!user) {
-    return NextResponse.json({ message: 'Login information is invalid.' }, { status: 403 })
+    return NextResponse.json({ message: 'invalid_credentials' })
   }
 
   const isPwdCorrect = comparePwdWithHash(password, user.pwdHash)
 
   if (!isPwdCorrect) {
-    return NextResponse.json({ message: 'Login information is invalid.' }, { status: 403 })
+    return NextResponse.json({ message: 'invalid_credentials' })
   }
 
   const token = sign({ username }, jwtSecret)
   const { email } = user
 
-  return NextResponse.json({ token, email, username }, { status: 200 })
+  return NextResponse.json({ token, email, username })
 }

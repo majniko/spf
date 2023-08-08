@@ -1,4 +1,6 @@
 import { ReduxState } from '@/lib/redux/store'
-import { LoginFormProps } from '@/features/components/loginForm/LoginForm'
+import { loginFormSliceState } from '@/lib/redux/slices/loginFormSlice/loginFormSlice'
+import { registerFormSliceState } from '@/lib/redux/slices/registerFormSlice/registerFormSlice'
 
-export const getLogin = (state: ReduxState): LoginFormProps => state.loginForm
+export const getLoginFormState = (state: ReduxState): loginFormSliceState => state.loginForm
+export const getRegisterFormState = (state: ReduxState): registerFormSliceState => state.registerForm
