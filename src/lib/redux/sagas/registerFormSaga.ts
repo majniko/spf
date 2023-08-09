@@ -23,7 +23,7 @@ type response = {
   error?: string
 }
 
-function* postRegisterForm(action: ReturnType<typeof registerSetIsSubmitting>) {
+function* postRegisterForm() {
   const { username, email, password }: registerFormSliceState = yield select(getRegisterFormState)
 
   const response: response = yield call(postRegister, {
