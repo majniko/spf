@@ -1,6 +1,7 @@
 import { useAppDispatch, useAppSelector } from '@/lib/redux/hooks'
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import {
+  loginClearForm,
   loginSetIsSubmitting,
   loginSetPassword,
   loginSetUsername,
@@ -29,6 +30,13 @@ export const useLoginForm = () => {
     console.log('login button clicked')
     dispatch(loginSetIsSubmitting({ router, isSubmitting: true }))
   }, [dispatch, router])
+
+  useEffect(
+    () => () => {
+      dispatch(loginClearForm())
+    },
+    [dispatch]
+  )
 
   return {
     username,

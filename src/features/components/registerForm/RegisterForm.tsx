@@ -13,9 +13,7 @@ export const RegisterForm = (): React.ReactElement => {
     email,
     password,
     isSubmitting,
-    isUsernameError,
-    isEmailError,
-    isNetworkError,
+    networkError,
     isSuccess,
     onUsernameChange,
     onEmailChange,
@@ -27,7 +25,7 @@ export const RegisterForm = (): React.ReactElement => {
     <div className={styles.registerForm}>
       {isSuccess ? (
         <div className={styles.successText}>
-          {localization.en.registerForm.success}
+          {localization.en.registerForm.request.success}
           <br />
           <Link href={'/login'}>{localization.en.registerForm.loginLink}</Link>
         </div>
@@ -38,9 +36,10 @@ export const RegisterForm = (): React.ReactElement => {
             variant={'filled'}
             id="username"
             size={'small'}
-            error={isUsernameError}
-            value={username}
+            value={username.value}
             onChange={onUsernameChange}
+            error={username.error}
+            helperText={username.helperText}
             label={localization.en.user.username}
           />
           <TextField
@@ -48,9 +47,10 @@ export const RegisterForm = (): React.ReactElement => {
             variant={'filled'}
             id="email"
             size={'small'}
-            error={isEmailError}
-            value={email}
+            value={email.value}
             onChange={onEmailChange}
+            error={email.error}
+            helperText={email.helperText}
             label={localization.en.user.email}
           />
           <TextField
@@ -58,16 +58,16 @@ export const RegisterForm = (): React.ReactElement => {
             variant={'filled'}
             id="password"
             size={'small'}
-            value={password}
+            value={password.value}
             onChange={onPasswordChange}
+            error={password.error}
+            helperText={password.helperText}
             label={localization.en.user.password}
           />
           <Button className={styles.button} variant={'contained'} onClick={onRegisterButtonClick}>
             {localization.en.registerForm.register}
           </Button>
-          {isUsernameError && <div className={styles.errorText}>{localization.en.registerForm.usernameError}</div>}
-          {isEmailError && <div className={styles.errorText}>{localization.en.registerForm.emailError}</div>}
-          {isNetworkError && <div className={styles.errorText}>{localization.en.errors.networkError}</div>}
+          {networkError && <div className={styles.errorText}>{localization.en.errors.networkError}</div>}
         </>
       )}
     </div>

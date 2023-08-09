@@ -21,30 +21,25 @@ export const loginFormSlice = createSlice({
   name: 'loginForm',
   initialState,
   reducers: {
-    loginSetUsername: (state: loginFormSliceState, action) => {
+    loginSetUsername: (state, action: { payload: string; type: string }) => {
       state.username = action.payload
-      state.isError = false
     },
-    loginSetPassword: (state: loginFormSliceState, action) => {
+    loginSetPassword: (state, action: { payload: string; type: string }) => {
       state.password = action.payload
-      state.isError = false
     },
     loginSetIsSubmitting: (
-      state: loginFormSliceState,
-      action: PayloadAction<{ isSubmitting: boolean; router: AppRouterInstance }>
+      state,
+      action: { payload: { isSubmitting: boolean; router: AppRouterInstance }; type: string }
     ) => {
       state.isSubmitting = action.payload.isSubmitting
     },
-    loginClearForm: (state: loginFormSliceState) => {
-      state.username = ''
-      state.password = ''
-    },
-    loginSetIsError: (state: loginFormSliceState, action) => {
+    loginSetIsError: (state, action: { payload: boolean; type: string }) => {
       state.isError = action.payload
     },
-    loginSetIsNetworkError: (state: loginFormSliceState, action) => {
+    loginSetIsNetworkError: (state, action: { payload: boolean; type: string }) => {
       state.isNetworkError = action.payload
     },
+    loginClearForm: () => initialState,
   },
 })
 
