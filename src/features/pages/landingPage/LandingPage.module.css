@@ -1,4 +1,11 @@
+.page {
+    position: relative;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    max-width: 30rem;
+}
+
 .button {
-  width: 100%;
   margin: 1rem auto;
 }

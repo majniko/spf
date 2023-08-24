@@ -3,19 +3,24 @@ import { NextResponse } from 'next/server'
 import { comparePwdWithHash } from '@/features/helpers/utils/comparePwdWithHash'
 import prisma from '@/lib/prisma/prisma'
 import { prismaUserProps } from '@/lib/prisma/types'
+import { validateUsername } from '@/features/helpers/validation/validateUsername'
+import { validatePassword } from '@/features/helpers/validation/validatePassword'
 
 const jwtSecret: Secret = process.env.JWT_SECRET!
 
 export async function POST(req: Request, res: Response) {
   const { username, password } = await req.json()
 
+  //since the same validation is done on the client side, this is just a precaution in case the client side validation fails or is bypassed
+  if (!validateUsername(username) || !validatePassword(password)) {
+    return NextResponse.json({ message: 'invalid_credentials' })
+  }
+
   const user: prismaUserProps | null = await prisma.users.findUnique({
     where: {
       username: username,
     },
   })
-
-  //console.log("hashedPwd: ", hashPwd(password))
 
   if (!user) {
     return NextResponse.json({ message: 'invalid_credentials' })

@@ -23,6 +23,12 @@ export const localization = {
         emailError: 'Please enter a valid email.',
         passwordError: 'Please enter a valid password.',
       },
+      tooltip: {
+        username:
+          'Username must be 6 to 20 characters long and can only contain letters, numbers, underscores and dots. No dots or underscores at the beginning or end, and no consecutive dots or underscores.',
+        email: 'Must be a valid email address.',
+        password: 'Password must be at least 8 characters long and contain at least one letter and one number.',
+      },
     },
     errors: {
       networkError: 'Network error, please try again later.',

@@ -2,11 +2,14 @@ import { useAppDispatch, useAppSelector } from '@/lib/redux/hooks'
 import React, { useCallback, useEffect } from 'react'
 import {
   loginClearForm,
+  loginSetIsError,
   loginSetIsSubmitting,
   loginSetPassword,
   loginSetUsername,
 } from '@/lib/redux/slices/loginFormSlice/loginFormSlice'
 import { useRouter } from 'next/navigation'
+import { validateUsername } from '@/features/helpers/validation/validateUsername'
+import { validatePassword } from '@/features/helpers/validation/validatePassword'
 
 export const useLoginForm = () => {
   const dispatch = useAppDispatch()
@@ -27,9 +30,22 @@ export const useLoginForm = () => {
   )
 
   const onLoginButtonClick = useCallback(() => {
-    console.log('login button clicked')
+    let validationError = false
+
+    if (!validateUsername(username)) {
+      validationError = true
+      dispatch(loginSetIsError(true))
+    }
+
+    if (!validatePassword(password)) {
+      validationError = true
+      dispatch(loginSetIsError(true))
+    }
+
+    if (validationError) return
+
     dispatch(loginSetIsSubmitting({ router, isSubmitting: true }))
-  }, [dispatch, router])
+  }, [dispatch, password, router, username])
 
   useEffect(
     () => () => {

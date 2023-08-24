@@ -23,7 +23,8 @@ type response = {
   error?: string
 }
 
-function* postRegisterForm() {
+function* postRegisterForm(action: ReturnType<typeof registerSetIsSubmitting>) {
+  if (!action.payload) return
   const { username, email, password }: registerFormSliceState = yield select(getRegisterFormState)
 
   const response: response = yield call(postRegister, {
@@ -41,15 +42,18 @@ function* postRegisterForm() {
 
   if (response.message === 'username_exists') {
     yield put({ type: registerSetUsernameError.type, payload: localization.en.registerForm.request.usernameError })
+    yield put({ type: registerSetIsSubmitting.type, payload: false })
     return
   }
   if (response.message === 'email_exists') {
     yield put({ type: registerSetEmailError.type, payload: localization.en.registerForm.request.emailError })
+    yield put({ type: registerSetIsSubmitting.type, payload: false })
     return
   }
 
-  if (response.error === 'network_error') {
+  if (response.error === 'network_error' || response.error === 'invalid_input') {
     yield put({ type: registerSetNetworkError.type, payload: true })
+    yield put({ type: registerSetIsSubmitting.type, payload: false })
   }
 }
 

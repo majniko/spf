@@ -29,6 +29,7 @@ export const LoginForm = () => {
         error={isError}
         value={username}
         onChange={onUsernameChange}
+        disabled={isSubmitting}
         label={localization.en.user.username}
       />
       <TextField
@@ -38,10 +39,11 @@ export const LoginForm = () => {
         size={'small'}
         error={isError}
         value={password}
+        disabled={isSubmitting}
         onChange={onPasswordChange}
         label={localization.en.user.password}
       />
-      <Button className={styles.button} variant={'contained'} onClick={onLoginButtonClick}>
+      <Button className={styles.button} variant={'contained'} onClick={onLoginButtonClick} disabled={isSubmitting}>
         {localization.en.loginForm.login}
       </Button>
       <Link href={'/register'}>{localization.en.registerForm.register}</Link>

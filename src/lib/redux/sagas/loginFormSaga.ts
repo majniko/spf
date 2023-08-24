@@ -20,6 +20,7 @@ type response = {
 }
 
 function* postLoginForm(action: ReturnType<typeof loginSetIsSubmitting>) {
+  if (!action.payload.isSubmitting) return
   const { username, password }: loginFormSliceState = yield select(getLoginFormState)
 
   const response: response = yield call(postLogin, { username, password })
@@ -34,11 +35,13 @@ function* postLoginForm(action: ReturnType<typeof loginSetIsSubmitting>) {
 
   if (response.message === 'invalid_credentials') {
     yield put({ type: loginSetIsError.type, payload: true })
+    yield put({ type: loginSetIsSubmitting.type, payload: false })
     return
   }
 
   if (response.error === 'network_error') {
     yield put({ type: loginSetIsNetworkError.type, payload: true })
+    yield put({ type: loginSetIsSubmitting.type, payload: false })
   }
 }
 

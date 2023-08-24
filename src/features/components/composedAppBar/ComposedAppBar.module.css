@@ -1,0 +1,14 @@
+.appBar {
+    position: sticky;
+}
+
+.username {
+    margin-right: 1rem;
+}
+
+.appName {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}

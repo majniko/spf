@@ -10,7 +10,7 @@ export const LandingPage = (): React.ReactElement => {
   const { onLogoutButtonClick } = useLandingPage()
 
   return (
-    <div>
+    <div className={styles.page}>
       <h1>You successfully logged in.</h1>
       <Button className={styles.button} variant={'contained'} onClick={onLogoutButtonClick}>
         {localization.en.loginForm.logout}
