@@ -32,7 +32,7 @@ export async function POST(req: Request, res: Response) {
     return NextResponse.json({ message: 'invalid_credentials' })
   }
 
-  const token = sign({ username, userId: user.id }, jwtSecret)
+  const token = sign({ username, userId: user.id, email: user.email }, jwtSecret)
   const { email } = user
 
   return NextResponse.json({ token, email, username })

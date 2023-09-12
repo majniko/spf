@@ -1,7 +1,7 @@
 import { JwtPayload, verify } from 'jsonwebtoken'
 
 export const verifyToken = (token: string, jwtSecret: string): JwtPayload | false => {
-  let decodedToken
+  let decodedToken: JwtPayload | string
   try {
     decodedToken = verify(token, jwtSecret)
   } catch (e) {
