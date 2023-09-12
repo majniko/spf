@@ -5,6 +5,7 @@ import { Providers } from '@/lib/providers'
 
 import { Inter } from 'next/font/google'
 import { ComposedAppBar } from '@/features/components/composedAppBar/ComposedAppBar'
+import { AlertSnackbar } from '@/features/components/alertSnackbar/AlertSnackbar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -26,6 +27,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
             <ComposedAppBar />
             {children}
           </div>
+          <AlertSnackbar />
         </Providers>
       </body>
     </html>

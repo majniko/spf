@@ -30,6 +30,11 @@ export const localization = {
         password: 'Password must be at least 8 characters long and contain at least one letter and one number.',
       },
     },
+    categories: {
+      title: 'Categories',
+      categoryExist: 'Category already exists.',
+      addCategory: 'Add New category',
+    },
     errors: {
       networkError: 'Network error, please try again later.',
     },

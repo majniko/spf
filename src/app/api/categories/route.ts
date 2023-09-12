@@ -46,5 +46,5 @@ export async function POST(req: Request, res: Response) {
 
   console.log('added')
 
-  return NextResponse.json({ message: '200' })
+  return NextResponse.json({ message: 'success' })
 }

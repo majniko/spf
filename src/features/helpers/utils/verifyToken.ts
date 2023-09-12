@@ -4,7 +4,6 @@ export const verifyToken = (token: string, jwtSecret: string): JwtPayload | fals
   let decodedToken
   try {
     decodedToken = verify(token, jwtSecret)
-    console.log(decodedToken)
   } catch (e) {
     return false
   }

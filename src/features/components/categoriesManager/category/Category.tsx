@@ -5,16 +5,18 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import styles from './Category.module.css'
 
 export type categoryProps = {
-  categoryName: string
+  id: string
+  name: string
+  userId: string
 }
 
 export const Category = (props: categoryProps) => {
-  const { categoryName } = props
+  const { name } = props
 
   return (
     <div className={styles.category}>
       <div className={styles.categoryName}>
-        <p>{categoryName}</p>
+        <p>{name}</p>
       </div>
       <IconButton aria-label="edit">
         <EditIcon />

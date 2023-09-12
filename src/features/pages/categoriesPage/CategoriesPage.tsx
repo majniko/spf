@@ -5,9 +5,10 @@ import { useAppDispatch, useAppSelector } from '@/lib/redux/hooks'
 import { categoriesSetCategories } from '@/lib/redux/slices/categoriesSlice/categoriesSlice'
 import { userSetUsername } from '@/lib/redux/slices/userSlice/userSlice'
 import { Prisma } from '.prisma/client'
+import { categoryProps } from '@/features/components/categoriesManager/category/Category'
 
 export type CategoriesPageProps = {
-  categories: Prisma.categoriesGetPayload<any>[]
+  categories: categoryProps[] | []
   username: string
 }
 
@@ -19,6 +20,7 @@ export const CategoriesPage = (props: CategoriesPageProps) => {
   if (userSelector.username === '') {
     dispatch(userSetUsername(username))
   }
+
   dispatch(categoriesSetCategories(categories))
 
   return (

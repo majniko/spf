@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context'
 
 export type categoriesSliceState = {
-  categories: [{ name: string; id: number }] | []
+  categories: { name: string; id: number; userId: string }[] | []
   isSubmitting: boolean
   newCategoryName: string
 }

@@ -13,7 +13,7 @@ export const CategoriesManager = () => {
     <div>
       <h1>CategoriesManager</h1>
       {categories.length > 0 ? (
-        categories.map(category => <Category key={category.id} categoryName={category.name} />)
+        categories.map(category => <Category key={category.id} name={category.name} />)
       ) : (
         <p>No categories yet</p>
       )}
