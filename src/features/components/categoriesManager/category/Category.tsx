@@ -1,13 +1,13 @@
 import React from 'react'
-import { IconButton, TextField } from '@mui/material'
+import { IconButton } from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import styles from './Category.module.css'
 
 export type categoryProps = {
-  id: string
+  id?: string
   name: string
-  userId: string
+  userId?: string
 }
 
 export const Category = (props: categoryProps) => {

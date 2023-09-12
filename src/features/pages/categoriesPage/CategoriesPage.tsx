@@ -4,7 +4,6 @@ import { CategoriesManager } from '@/features/components/categoriesManager/Categ
 import { useAppDispatch, useAppSelector } from '@/lib/redux/hooks'
 import { categoriesSetCategories } from '@/lib/redux/slices/categoriesSlice/categoriesSlice'
 import { userSetUsername } from '@/lib/redux/slices/userSlice/userSlice'
-import { Prisma } from '.prisma/client'
 import { categoryProps } from '@/features/components/categoriesManager/category/Category'
 
 export type CategoriesPageProps = {

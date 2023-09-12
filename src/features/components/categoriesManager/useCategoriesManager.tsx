@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useAppSelector } from '@/lib/redux/hooks'
 import React, { useCallback } from 'react'
 import {
@@ -21,7 +21,7 @@ export const useCategoriesManager = () => {
 
   const onSubmitButtonClick = useCallback(() => {
     dispatch(categoriesSetIsSubmitting({ isSubmitting: true, router }))
-  }, [dispatch])
+  }, [dispatch, router])
 
   return {
     categories,
