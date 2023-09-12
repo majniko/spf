@@ -4,3 +4,4 @@ import { registerFormSliceState } from '@/lib/redux/slices/registerFormSlice/reg
 
 export const getLoginFormState = (state: ReduxState): loginFormSliceState => state.loginForm
 export const getRegisterFormState = (state: ReduxState): registerFormSliceState => state.registerForm
+export const getCategoriesState = (state: ReduxState) => state.categories

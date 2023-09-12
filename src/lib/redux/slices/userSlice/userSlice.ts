@@ -29,7 +29,10 @@ export const userSlice = createSlice({
       state.email = ''
       clearTokenFromCookies()
     },
+    userSetUsername: (state: userSliceState, action: PayloadAction<string>) => {
+      state.username = action.payload
+    },
   },
 })
 
-export const { userSaveLoginData, userLogout } = userSlice.actions
+export const { userSaveLoginData, userLogout, userSetUsername } = userSlice.actions
