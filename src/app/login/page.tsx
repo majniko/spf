@@ -7,7 +7,7 @@ export default function Login(): React.ReactElement {
   const token = getTokenFromCookies()
 
   if (token) {
-    redirect('/landing-page')
+    redirect('/user/landing-page')
   }
 
   return <LoginPage />

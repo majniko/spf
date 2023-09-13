@@ -23,10 +23,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <div className={'main'}>
-            <ComposedAppBar />
-            {children}
-          </div>
+          <div className={'main'}>{children}</div>
           <AlertSnackbar />
         </Providers>
       </body>

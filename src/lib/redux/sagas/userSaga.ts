@@ -1,5 +1,5 @@
 import { takeEvery } from '@redux-saga/core/effects'
-import { userLogout } from '@/lib/redux/slices/userSlice/userSlice'
+import { userLogout } from '@/lib/redux/slices/userSlice'
 
 function* logoutUser(action: ReturnType<typeof userLogout>) {
   action.payload.router.push('/login')

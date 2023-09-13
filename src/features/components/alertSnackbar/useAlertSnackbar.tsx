@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from '@/lib/redux/hooks'
 import React, { useCallback } from 'react'
-import { alertProps, alertsRemoveAlert } from '@/lib/redux/slices/alertsSlice/alertsSlice'
+import { alertProps, alertsRemoveAlert } from '@/lib/redux/slices/alertsSlice'
 
 export const useAlertSnackbar = () => {
   const { alerts } = useAppSelector(state => state.alerts)

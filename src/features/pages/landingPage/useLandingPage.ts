@@ -1,5 +1,5 @@
 import { useAppDispatch } from '@/lib/redux/hooks'
-import { userLogout } from '@/lib/redux/slices/userSlice/userSlice'
+import { userLogout } from '@/lib/redux/slices/userSlice'
 import { useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 

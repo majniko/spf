@@ -6,7 +6,7 @@ import {
   loginSetIsSubmitting,
   loginSetPassword,
   loginSetUsername,
-} from '@/lib/redux/slices/loginFormSlice/loginFormSlice'
+} from '@/lib/redux/slices/loginFormSlice'
 import { useRouter } from 'next/navigation'
 import { validateUsername } from '@/features/helpers/validation/validateUsername'
 import { validatePassword } from '@/features/helpers/validation/validatePassword'
