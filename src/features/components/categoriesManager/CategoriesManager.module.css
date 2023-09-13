@@ -1,8 +1,7 @@
 .newCategory {
     margin: 0.5rem auto 0;
-    min-width: 300px;
 }
 
 .textField {
-  min-width: 312px;
+  min-width: 21rem;
 }

@@ -3,11 +3,16 @@
     float: left;
     margin: 0 auto;
     background-color: lightgray;
-    min-width: 300px;
-    padding: 6px;
+    min-width: 20rem;
+    padding: 0.5rem;
     border-radius: 5px;
+    min-height: 1.5rem;
 }
 
 .category {
     margin: 0 auto 0.5rem;
+}
+
+.textField {
+    min-width: 21rem;
 }

@@ -13,7 +13,7 @@ export const CategoriesManager = () => {
     <div>
       <h1>CategoriesManager</h1>
       {categories.length > 0 ? (
-        categories.map(category => <Category key={category.id} name={category.name} />)
+        categories.map(category => <Category key={category.id} id={category.id} name={category.name} />)
       ) : (
         <p>No categories yet</p>
       )}
@@ -24,7 +24,6 @@ export const CategoriesManager = () => {
           value={newCategoryName}
           onChange={onNewCategoryNameChange}
           label="Add New Category"
-          id="outlined-basic"
           variant="outlined"
           className={styles.textField}
         />

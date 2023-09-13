@@ -1,23 +1,27 @@
 import { NextResponse } from 'next/server'
-import { cookies } from 'next/headers'
-import { verifyToken } from '@/features/helpers/utils/verifyToken'
 import prisma from '@/lib/prisma/prisma'
+import { getDecodedToken } from '@/features/helpers/server/getDecodedToken'
 
-const jwtSecret = process.env.JWT_SECRET
-
-type reqProps = {
+type postReqProps = {
   newCategoryName: string
 }
 
-export async function POST(req: Request, res: Response) {
-  const cookie = cookies().get('token')
-  const decodedCookie = verifyToken(cookie?.value!, jwtSecret!)
-  const { newCategoryName }: reqProps = await req.json()
-  let user, category
+type putReqProps = {
+  categoryId: string
+  editedCategoryName: string
+}
 
-  if (decodedCookie === false) {
+type deleteReqProps = {
+  categoryId: string
+}
+
+export async function POST(req: Request) {
+  const decodedCookie = getDecodedToken()
+  if (!decodedCookie) {
     return NextResponse.json({ message: 'invalid_token' })
   }
+  const { newCategoryName }: postReqProps = await req.json()
+  let user, category
 
   try {
     user = await prisma.users.findUnique({ where: { id: decodedCookie.userId } })
@@ -62,4 +66,49 @@ export async function POST(req: Request, res: Response) {
   return NextResponse.json({ message: 'success' })
 }
 
-export async function PUT(req: Request, res: Response) {}
+export async function PUT(req: Request) {
+  const decodedCookie = getDecodedToken()
+  if (!decodedCookie) {
+    return NextResponse.json({ message: 'invalid_token' })
+  }
+
+  const { categoryId, editedCategoryName }: putReqProps = await req.json()
+
+  try {
+    await prisma.categories.update({
+      where: {
+        id: categoryId,
+        userId: decodedCookie.userId,
+      },
+      data: {
+        name: editedCategoryName,
+      },
+    })
+  } catch (e) {
+    return NextResponse.json({ message: 'unexpected_prisma_error' })
+  }
+
+  return NextResponse.json({ message: 'success' })
+}
+
+export async function DELETE(req: Request) {
+  const decodedCookie = getDecodedToken()
+  if (!decodedCookie) {
+    return NextResponse.json({ message: 'invalid_token' })
+  }
+
+  const { categoryId }: deleteReqProps = await req.json()
+
+  try {
+    await prisma.categories.delete({
+      where: {
+        id: categoryId,
+        userId: decodedCookie.userId,
+      },
+    })
+  } catch (e) {
+    return NextResponse.json({ message: 'unexpected_prisma_error' })
+  }
+
+  return NextResponse.json({ message: 'success' })
+}

@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { useAppSelector } from '@/lib/redux/hooks'
 import React, { useCallback } from 'react'
-import { categoriesSetIsSubmitting, categoriesSetNewCategoryName } from '@/lib/redux/slices/categoriesSlice'
+import { categoriesCallPost, categoriesSetNewCategoryName } from '@/lib/redux/slices/categoriesSlice'
 import { useRouter } from 'next/navigation'
 
 export const useCategoriesManager = () => {
@@ -17,7 +17,7 @@ export const useCategoriesManager = () => {
   )
 
   const onSubmitButtonClick = useCallback(() => {
-    dispatch(categoriesSetIsSubmitting({ isSubmitting: true, router }))
+    dispatch(categoriesCallPost({ router }))
   }, [dispatch, router])
 
   return {
