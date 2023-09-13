@@ -37,6 +37,7 @@ export const localization = {
     },
     errors: {
       networkError: 'Network error, please try again later.',
+      unexpectedPrismaError: 'DB error, please contact admin.',
     },
   },
 }

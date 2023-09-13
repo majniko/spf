@@ -20,9 +20,12 @@ function* postNewCategory(action: ReturnType<typeof categoriesSetIsSubmitting>) 
     action.payload.router.refresh()
     return
   }
-
   if (response.message === 'category_exists') {
     yield put(alertsAddNewAlert({ message: localization.en.categories.categoryExist, severity: 'error' }))
+  }
+
+  if (response.message === 'unexpected_prisma_error') {
+    yield put(alertsAddNewAlert({ message: localization.en.errors.unexpectedPrismaError, severity: 'error' }))
   }
 }
 

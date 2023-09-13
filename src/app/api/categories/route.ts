@@ -12,39 +12,54 @@ type reqProps = {
 export async function POST(req: Request, res: Response) {
   const cookie = cookies().get('token')
   const decodedCookie = verifyToken(cookie?.value!, jwtSecret!)
+  const { newCategoryName }: reqProps = await req.json()
+  let user, category
 
   if (decodedCookie === false) {
     return NextResponse.json({ message: 'invalid_token' })
   }
 
-  const user = await prisma.users.findUnique({ where: { id: decodedCookie.userId } })
+  try {
+    user = await prisma.users.findUnique({ where: { id: decodedCookie.userId } })
+  } catch (e) {
+    return NextResponse.json({ message: 'invalid_token' })
+  }
+
   if (!user) {
     return NextResponse.json({ message: 'invalid_token' })
   }
 
-  const { newCategoryName }: reqProps = await req.json()
-
   console.log(newCategoryName)
 
-  const category = await prisma.categories.findMany({
-    where: {
-      name: newCategoryName,
-      userId: user.id,
-    },
-  })
+  try {
+    category = await prisma.categories.findMany({
+      where: {
+        name: newCategoryName,
+        userId: user.id,
+      },
+    })
+  } catch (e) {
+    return NextResponse.json({ message: 'unexpected_prisma_error' })
+  }
 
   if (category.length > 0) {
     return NextResponse.json({ message: 'category_exists' })
   }
 
-  await prisma.categories.create({
-    data: {
-      name: newCategoryName,
-      userId: user.id,
-    },
-  })
+  try {
+    await prisma.categories.create({
+      data: {
+        name: newCategoryName,
+        userId: user.id,
+      },
+    })
+  } catch (e) {
+    return NextResponse.json({ message: 'unexpected_prisma_error' })
+  }
 
   console.log('added')
 
   return NextResponse.json({ message: 'success' })
 }
+
+export async function PUT(req: Request, res: Response) {}
