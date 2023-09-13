@@ -7,9 +7,9 @@ import {
   loginSetIsSubmitting,
   loginSetPassword,
   loginSetUsername,
-} from '@/lib/redux/slices/loginFormSlice/loginFormSlice'
+} from '@/lib/redux/slices/loginFormSlice'
 import { postLogin } from '@/features/helpers/clientAPICalls/postLogin'
-import { userSaveLoginData } from '@/lib/redux/slices/userSlice/userSlice'
+import { userSaveLoginData } from '@/lib/redux/slices/userSlice'
 import { saveTokenToCookies } from '@/features/helpers/cookies/saveTokenToCookies'
 
 type response = {
@@ -29,7 +29,7 @@ function* postLoginForm(action: ReturnType<typeof loginSetIsSubmitting>) {
     const { token, email } = response
     yield put({ type: userSaveLoginData.type, payload: { username, token, email } })
     yield call(saveTokenToCookies, token)
-    action.payload.router.push('/landing-page')
+    action.payload.router.push('/user/landing-page')
     return
   }
 

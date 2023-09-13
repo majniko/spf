@@ -9,7 +9,7 @@ import {
   registerSetPasswordError,
   registerSetUsernameError,
   registerClearForm,
-} from '@/lib/redux/slices/registerFormSlice/registerFormSlice'
+} from '@/lib/redux/slices/registerFormSlice'
 import { validateUsername } from '@/features/helpers/validation/validateUsername'
 import { validateEmail } from '@/features/helpers/validation/validateEmail'
 import { validatePassword } from '@/features/helpers/validation/validatePassword'

@@ -1,10 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { useAppSelector } from '@/lib/redux/hooks'
 import React, { useCallback } from 'react'
-import {
-  categoriesSetIsSubmitting,
-  categoriesSetNewCategoryName,
-} from '@/lib/redux/slices/categoriesSlice/categoriesSlice'
+import { categoriesSetIsSubmitting, categoriesSetNewCategoryName } from '@/lib/redux/slices/categoriesSlice'
 import { useRouter } from 'next/navigation'
 
 export const useCategoriesManager = () => {

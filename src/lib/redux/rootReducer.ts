@@ -1,8 +1,8 @@
-import { userSlice } from '@/lib/redux/slices/userSlice/userSlice'
-import { loginFormSlice } from '@/lib/redux/slices/loginFormSlice/loginFormSlice'
-import { registerFormSlice } from '@/lib/redux/slices/registerFormSlice/registerFormSlice'
-import { categoriesSlice } from '@/lib/redux/slices/categoriesSlice/categoriesSlice'
-import { alertsSlice } from '@/lib/redux/slices/alertsSlice/alertsSlice'
+import { userSlice } from '@/lib/redux/slices/userSlice'
+import { loginFormSlice } from '@/lib/redux/slices/loginFormSlice'
+import { registerFormSlice } from '@/lib/redux/slices/registerFormSlice'
+import { categoriesSlice } from '@/lib/redux/slices/categoriesSlice'
+import { alertsSlice } from '@/lib/redux/slices/alertsSlice'
 
 export const rootReducer = {
   [userSlice.name]: userSlice.reducer,

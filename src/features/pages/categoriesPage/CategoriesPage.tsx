@@ -2,25 +2,23 @@
 
 import { CategoriesManager } from '@/features/components/categoriesManager/CategoriesManager'
 import { useAppDispatch, useAppSelector } from '@/lib/redux/hooks'
-import { categoriesSetCategories } from '@/lib/redux/slices/categoriesSlice/categoriesSlice'
-import { userSetUsername } from '@/lib/redux/slices/userSlice/userSlice'
+import { categoriesSetCategories } from '@/lib/redux/slices/categoriesSlice'
+import { userSetUsername } from '@/lib/redux/slices/userSlice'
 import { categoryProps } from '@/features/components/categoriesManager/category/Category'
+import { useEffect } from 'react'
 
 export type CategoriesPageProps = {
   categories: categoryProps[] | []
-  username: string
 }
 
 export const CategoriesPage = (props: CategoriesPageProps) => {
-  const { categories, username } = props
+  const { categories } = props
   const dispatch = useAppDispatch()
   const userSelector = useAppSelector(state => state.user)
 
-  if (userSelector.username === '') {
-    dispatch(userSetUsername(username))
-  }
-
-  dispatch(categoriesSetCategories(categories))
+  useEffect(() => {
+    dispatch(categoriesSetCategories(categories))
+  })
 
   return (
     <div>

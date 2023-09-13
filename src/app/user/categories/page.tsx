@@ -5,21 +5,10 @@ import { redirect } from 'next/navigation'
 import prisma from '@/lib/prisma/prisma'
 import { verifyToken } from '@/features/helpers/utils/verifyToken'
 import { categoryProps } from '@/features/components/categoriesManager/category/Category'
-
-const jwtSecret = process.env.JWT_SECRET!
+import { getDecodedTokenOnServer } from '@/features/helpers/cookies/getDecodedTokenOnServer'
 
 export default async function Categories(): Promise<React.ReactElement> {
-  const token = getTokenFromCookies()
-
-  if (!token) {
-    redirect('/login')
-  }
-
-  const decodedToken = verifyToken(token, jwtSecret)
-
-  if (!decodedToken) {
-    redirect('/login')
-  }
+  const decodedToken = getDecodedTokenOnServer()
 
   let categories = await prisma.categories.findMany({ where: { userId: decodedToken.userId } })
 
@@ -40,5 +29,5 @@ export default async function Categories(): Promise<React.ReactElement> {
 
   //console.log(categories)
 
-  return <CategoriesPage categories={mappedCategories} username={decodedToken.username} />
+  return <CategoriesPage categories={mappedCategories} />
 }

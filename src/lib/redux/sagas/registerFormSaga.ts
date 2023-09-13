@@ -11,7 +11,7 @@ import {
   registerSetPassword,
   registerSetUsername,
   registerSetUsernameError,
-} from '@/lib/redux/slices/registerFormSlice/registerFormSlice'
+} from '@/lib/redux/slices/registerFormSlice'
 import { call, put, select, takeLatest } from '@redux-saga/core/effects'
 import { postRegister } from '@/features/helpers/clientAPICalls/postRegister'
 import { getRegisterFormState } from '@/lib/redux/selectors'

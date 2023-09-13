@@ -3,11 +3,15 @@
 import { AppBar, Button, IconButton, Toolbar, Typography } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import { useComposedAppBar } from '@/features/components/composedAppBar/useComposedAppBar'
-import { inspect } from 'util'
 import styles from './ComposedAppBar.module.css'
+import { JwtPayload } from 'jsonwebtoken'
 
-export const ComposedAppBar = () => {
-  const { onLogoutButtonClick, username } = useComposedAppBar()
+export type ComposedAppBarProps = {
+  decodedToken: JwtPayload
+}
+
+export const ComposedAppBar = ({ decodedToken }: ComposedAppBarProps) => {
+  const { onLogoutButtonClick, username } = useComposedAppBar(decodedToken)
 
   return (
     <AppBar className={styles.appBar}>
