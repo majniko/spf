@@ -5,7 +5,7 @@ import { verifyToken } from '@/features/helpers/utils/verifyToken'
 
 const jwtSecret = process.env.JWT_SECRET!
 
-export const getDecodedTokenOnServer = (): JwtPayload => {
+export const decodeTokenOrRedirect = (): JwtPayload => {
   const token = getTokenFromCookies()
 
   if (!token) {

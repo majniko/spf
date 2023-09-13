@@ -5,10 +5,10 @@ import { redirect } from 'next/navigation'
 import prisma from '@/lib/prisma/prisma'
 import { verifyToken } from '@/features/helpers/utils/verifyToken'
 import { categoryProps } from '@/features/components/categoriesManager/category/Category'
-import { getDecodedTokenOnServer } from '@/features/helpers/cookies/getDecodedTokenOnServer'
+import { decodeTokenOrRedirect } from '@/features/helpers/cookies/decodeTokenOrRedirect'
 
 export default async function Categories(): Promise<React.ReactElement> {
-  const decodedToken = getDecodedTokenOnServer()
+  const decodedToken = decodeTokenOrRedirect()
 
   let categories = await prisma.categories.findMany({ where: { userId: decodedToken.userId } })
 
