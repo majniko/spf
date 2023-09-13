@@ -3,6 +3,7 @@ import React, { useCallback } from 'react'
 import {
   categoriesCallDelete,
   categoriesCallPut,
+  categoriesClearEdit,
   categoriesSetEditedCategoryId,
   categoriesSetEditedCategoryName,
 } from '@/lib/redux/slices/categoriesSlice'
@@ -36,8 +37,7 @@ export const useCategory = ({ categoryId, categoryName }: useCategoryProps) => {
 
   const onCancelButtonClick = useCallback((): void => {
     setIsEdit(false)
-    dispatch(categoriesSetEditedCategoryId(''))
-    dispatch(categoriesSetEditedCategoryName(''))
+    dispatch(categoriesClearEdit())
   }, [dispatch])
 
   const onCategoryNameChange = useCallback(
@@ -53,6 +53,7 @@ export const useCategory = ({ categoryId, categoryName }: useCategoryProps) => {
   }, [dispatch, router])
 
   const onDeleteButtonClick = useCallback((): void => {
+    dispatch(categoriesSetEditedCategoryId(categoryId))
     dispatch(categoriesCallDelete({ router }))
   }, [dispatch, router])
 

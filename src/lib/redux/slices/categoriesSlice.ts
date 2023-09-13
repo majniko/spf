@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context'
+import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
 
 export type categoriesSliceState = {
   categories: { name: string; id: string; userId: string }[] | []
@@ -33,6 +33,10 @@ export const categoriesSlice = createSlice({
     categoriesSetEditedCategoryId: (state, action: { payload: string; type: string }) => {
       state.editedCategoryId = action.payload
     },
+    categoriesClearEdit: state => {
+      state.editedCategoryName = ''
+      state.editedCategoryId = ''
+    },
     categoriesCallPost: (state, action: { payload: { router: AppRouterInstance }; type: string }) => {
       state.isSubmitting = true
     },
@@ -53,6 +57,7 @@ export const {
   categoriesSetNewCategoryName,
   categoriesSetEditedCategoryName,
   categoriesSetEditedCategoryId,
+  categoriesClearEdit,
   categoriesCallPost,
   categoriesCallPut,
   categoriesCallDelete,

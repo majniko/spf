@@ -1,16 +1,15 @@
 export type postNewCategoryProps = {
-  editedCategoryName: string
-  categoryId: string
+  newCategoryName: string
 }
 
-export const putCategoryName = async ({ editedCategoryName, categoryId }: postNewCategoryProps) => {
+export const postCategoryCall = async ({ newCategoryName }: postNewCategoryProps) => {
   try {
     const response = await fetch('/api/categories', {
-      method: 'PUT',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ editedCategoryName, categoryId }),
+      body: JSON.stringify({ newCategoryName }),
     })
     return await response.json()
   } catch (error) {

@@ -42,12 +42,11 @@ export async function POST(req: Request) {
         userId: user.id,
       },
     })
+    if (category.length > 0) {
+      return NextResponse.json({ message: 'category_exists' })
+    }
   } catch (e) {
     return NextResponse.json({ message: 'unexpected_prisma_error' })
-  }
-
-  if (category.length > 0) {
-    return NextResponse.json({ message: 'category_exists' })
   }
 
   try {
@@ -73,6 +72,20 @@ export async function PUT(req: Request) {
   }
 
   const { categoryId, editedCategoryName }: putReqProps = await req.json()
+
+  try {
+    const category = await prisma.categories.findMany({
+      where: {
+        name: editedCategoryName,
+        userId: decodedCookie.userId,
+      },
+    })
+    if (category.length > 0) {
+      return NextResponse.json({ message: 'category_exists' })
+    }
+  } catch (e) {
+    return NextResponse.json({ message: 'unexpected_prisma_error' })
+  }
 
   try {
     await prisma.categories.update({

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context'
+import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
 
 export type loginFormSliceState = {
   username: string

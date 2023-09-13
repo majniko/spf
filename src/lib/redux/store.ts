@@ -14,7 +14,15 @@ export const reduxStore = configureStore({
   devTools: true,
   middleware: getDefaultMiddleware => {
     return getDefaultMiddleware({
-      serializableCheck: { ignoredActions: ['loginForm/loginSetIsSubmitting', 'user/userLogout'] },
+      serializableCheck: {
+        ignoredActions: [
+          'loginForm/loginSetIsSubmitting',
+          'user/userLogout',
+          'categories/categoriesCallPost',
+          'categories/categoriesCallPut',
+          'categories/categoriesCallDelete',
+        ],
+      },
     }).concat(sagaMiddleware)
   },
 })
