@@ -3,9 +3,18 @@
     display: block;
     align-items: center;
     justify-content: center;
-    max-width: 30rem;
+    margin: 0.5rem auto;
+    width: fit-content;
+    border: 1px solid darkgray;
 }
 
 .button {
   margin: 1rem auto;
+}
+
+.title {
+    width: fit-content;
+    display: block;
+    margin: 0;
+    align-content: center;
 }

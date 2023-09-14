@@ -4,6 +4,7 @@ import { getTokenFromCookies } from '@/features/helpers/cookies/getTokenFromCook
 import { redirect } from 'next/navigation'
 import { verifyToken } from '@/features/helpers/utils/verifyToken'
 import { decodeTokenOrRedirect } from '@/features/helpers/cookies/decodeTokenOrRedirect'
+import styles from './layout.module.css'
 
 export type userLayoutProps = {
   children: React.ReactNode
@@ -15,7 +16,7 @@ const UserLayout = (props: userLayoutProps) => {
   return (
     <>
       <ComposedAppBar decodedToken={decodedToken} />
-      {props.children}
+      <div className={styles.privatePage}>{props.children}</div>
     </>
   )
 }

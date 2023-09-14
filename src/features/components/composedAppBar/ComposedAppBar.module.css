@@ -1,5 +1,6 @@
 .appBar {
-    position: sticky;
+    position: fixed;
+    z-index: 1400;
 }
 
 .username {
