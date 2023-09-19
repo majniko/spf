@@ -16,6 +16,8 @@ import MenuIcon from '@mui/icons-material/Menu'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import styles from './ResponsiveDrawer.module.css'
+import { menuItems } from '@/features/components/composedAppBar/responsiveDrawer/menuItems'
+import Link from 'next/link'
 
 const drawerWidth = 240
 
@@ -30,23 +32,16 @@ export default function ResponsiveDrawer() {
     <div className={styles.responsiveDrawer}>
       <Divider />
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
+        {menuItems.map(item => (
+          <ListItem key={item.name} disablePadding>
+            <Link href={item.path} className={styles.linkText}>
+              <ListItemButton className={styles.button}>
+                <ListItemIcon>
+                  <item.icon />
+                </ListItemIcon>
+                <ListItemText primary={item.name} />
+              </ListItemButton>
+            </Link>
           </ListItem>
         ))}
       </List>
@@ -56,7 +51,7 @@ export default function ResponsiveDrawer() {
   //const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex', top: '3rem', position: 'absolute' }} className={styles.responsiveDrawer}>
+    <Box sx={{ display: 'flex', position: 'fixed' }} className={styles.responsiveDrawer}>
       <CssBaseline />
       {/*      <AppBar
         position="fixed"

@@ -16,7 +16,9 @@ const UserLayout = (props: userLayoutProps) => {
   return (
     <>
       <ComposedAppBar decodedToken={decodedToken} />
-      <div className={styles.privatePage}>{props.children}</div>
+      <div className={styles.privatePage}>
+        <div className={styles.container}>{props.children}</div>
+      </div>
     </>
   )
 }

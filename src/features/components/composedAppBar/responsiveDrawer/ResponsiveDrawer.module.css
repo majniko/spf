@@ -1,4 +1,16 @@
 .responsiveDrawer {
     width: 239px;
     padding-top: 4rem;
+    left: 0;
+    top: 0;
+    position: fixed;
+}
+
+.linkText {
+    text-decoration: none;
+    color: black;
+}
+
+.button {
+    margin-left: 0.5rem;
 }

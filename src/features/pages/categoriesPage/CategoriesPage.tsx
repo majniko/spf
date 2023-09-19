@@ -6,6 +6,8 @@ import { categoriesSetCategories } from '@/lib/redux/slices/categoriesSlice'
 import { userSetUsername } from '@/lib/redux/slices/userSlice'
 import { categoryProps } from '@/features/components/categoriesManager/category/Category'
 import { useEffect } from 'react'
+import styles from './CategoriesPage.module.css'
+import { Divider } from '@mui/material'
 
 export type CategoriesPageProps = {
   categories: categoryProps[] | []
@@ -21,8 +23,9 @@ export const CategoriesPage = (props: CategoriesPageProps) => {
   })
 
   return (
-    <div>
-      <h1>CategoriesPage</h1>
+    <div className={styles.categoriesPage}>
+      <h1>Categories</h1>
+      <Divider />
       <CategoriesManager />
     </div>
   )

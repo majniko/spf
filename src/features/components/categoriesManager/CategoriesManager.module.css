@@ -1,7 +1,16 @@
+.categoriesManager {
+    display: block;
+    align-items: center;
+    margin: 4rem auto 1rem;
+    width: 100%;
+}
+
 .newCategory {
-    margin: 0.5rem auto 0;
+    margin: 1rem auto 1rem;
+    width: fit-content;
+    padding-right: 2.5rem;
 }
 
 .textField {
-  min-width: 21rem;
+  min-width: 20rem;
 }

@@ -10,8 +10,7 @@ export const CategoriesManager = () => {
   const { newCategoryName, onNewCategoryNameChange, onSubmitButtonClick, categories } = useCategoriesManager()
 
   return (
-    <div>
-      <h1>CategoriesManager</h1>
+    <div className={styles.categoriesManager}>
       {categories.length > 0 ? (
         categories.map(category => <Category key={category.id} id={category.id} name={category.name} />)
       ) : (

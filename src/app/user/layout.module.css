@@ -2,16 +2,39 @@
 @value medium from '../breakpoints.module.css';
 
 .privatePage {
-    display: block;
-    margin-top: 4rem;
+    display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 4rem;
+    min-height: calc(100vh - 4rem);
+    @media (max-width: 599px) {
+        width: 100vw;
+    }
     @media (min-width: 600px) {
         margin-left: 240px;
         width: calc(100vw - 240px);
     }
-    @media (max-width: 599px) {
-        width: 100vw;
+    @media (min-width: 768px) {
+        padding-left: 5vw;
+        padding-right: 5vw;
     }
+    @media (min-width: 992px)  {
+        padding-left: 10vw;
+        padding-right: 10vw;
+    }
+    @media (min-width: 1200px)  {
+        padding-left: 20vw;
+        padding-right: 20vw;
+    }
+}
 
+.container {
+    margin: 0;
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 5px 5px 3px lightgray;
 }
