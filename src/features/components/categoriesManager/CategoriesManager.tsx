@@ -11,12 +11,13 @@ export const CategoriesManager = () => {
 
   return (
     <div className={styles.categoriesManager}>
+      <Divider className={styles.divider} />
       {categories.length > 0 ? (
         categories.map(category => <Category key={category.id} id={category.id} name={category.name} />)
       ) : (
         <p>No categories yet</p>
       )}
-      <Divider />
+      <Divider className={styles.divider} />
       <div className={styles.newCategory}>
         <TextField
           size={'small'}

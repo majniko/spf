@@ -6,6 +6,7 @@ import { loginFormSaga } from '@/lib/redux/sagas/loginFormSaga'
 import { userSaga } from '@/lib/redux/sagas/userSaga'
 import { registerFormSaga } from '@/lib/redux/sagas/registerFormSaga'
 import { categoriesSaga } from '@/lib/redux/sagas/categoriesSaga'
+import { entriesSaga } from '@/lib/redux/sagas/entriesSaga'
 
 let sagaMiddleware = createSagaMiddleware()
 
@@ -32,6 +33,7 @@ function* rootSaga() {
   yield fork(userSaga)
   yield fork(registerFormSaga)
   yield fork(categoriesSaga)
+  yield fork(entriesSaga)
 }
 
 sagaMiddleware.run(rootSaga)

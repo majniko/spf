@@ -1,8 +1,6 @@
 .categoriesManager {
     display: block;
-    align-items: center;
-    margin: 4rem auto 1rem;
-    width: 100%;
+    position: relative;
 }
 
 .newCategory {
@@ -13,4 +11,9 @@
 
 .textField {
   min-width: 20rem;
+}
+
+.divider {
+    width: 90%;
+    margin: 0.5rem auto 0.5rem;
 }

@@ -16,7 +16,7 @@ export const menuItems = [
   },
   {
     name: 'Add Entry',
-    path: '/user/categories',
+    path: '/user/add-entry',
     icon: NoteAddIcon,
   },
   {

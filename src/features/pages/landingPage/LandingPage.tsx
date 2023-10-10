@@ -1,5 +1,3 @@
-'use client'
-
 import styles from './LandingPage.module.css'
 import { localization } from '@/features/localization/localization'
 import { Button } from '@mui/material'
