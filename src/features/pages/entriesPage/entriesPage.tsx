@@ -1,25 +1,38 @@
 'use client'
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { entryProps } from '@/features/components/entriesManager/entry/Entry'
+import { categoryProps } from '@/features/components/categoriesManager/category/Category'
+import { useAppDispatch } from '@/lib/redux/hooks'
+import { categoriesSetCategories } from '@/lib/redux/slices/categoriesSlice'
+import { entriesSetEntries } from '@/lib/redux/slices/entriesSlice'
+import { EntriesManager } from '@/features/components/entriesManager/EntriesManager'
+import styles from './EntriesPage.module.css'
+import { CategoriesManager } from '@/features/components/categoriesManager/CategoriesManager'
+import { Divider } from '@mui/material'
 
-export const EntriesPage = () => {
-  const [value, setValue] = React.useState('')
+export type EntriesPageProps = {
+  entries: entryProps[] | []
+  categories: categoryProps[] | []
+}
+
+export const EntriesPage = (props: EntriesPageProps) => {
+  const { categories, entries } = props
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(categoriesSetCategories(categories))
+    dispatch(entriesSetEntries(entries))
+  })
+
+  console.log(entries, categories)
 
   return (
-    <FormControl variant="outlined" style={{ width: '100%' }}>
-      <InputLabel id="test-select-label">Label</InputLabel>
-      <Select
-        value={value}
-        onChange={e => setValue(e.target.value)}
-        label="Label" // here is the difference
-      >
-        <MenuItem key={1} value="test">
-          Test 1
-        </MenuItem>
-        <MenuItem key={2} value="test2">
-          Test 2
-        </MenuItem>
-      </Select>
-    </FormControl>
+    <div className={styles.entriesPage}>
+      <div className={styles.title}>
+        <h1>Entries</h1>
+      </div>
+      <Divider className={styles.divider} />
+      <EntriesManager />
+    </div>
   )
 }

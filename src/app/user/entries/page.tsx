@@ -1,28 +1,17 @@
 import React from 'react'
-import { decodeTokenOrRedirect } from '@/features/helpers/cookies/decodeTokenOrRedirect'
+import { decodeTokenOrRedirect } from '@/features/helpers/server/decodeTokenOrRedirect'
 import { AddEntryPage } from '@/features/pages/addEntryPage/AddEntryPage'
 import { EntriesPage } from '@/features/pages/entriesPage/entriesPage'
 import prisma from '@/lib/prisma/prisma'
 import { categoryProps } from '@/features/components/categoriesManager/category/Category'
+import { getMappedCategories } from '@/features/helpers/server/getMappedCategories'
+import { getMappedEntries } from '@/features/helpers/server/getMappedEntries'
 
 export default async function Entries(): Promise<React.ReactElement> {
   const decodedToken = decodeTokenOrRedirect()
 
-  let entries = await prisma.entries.findMany({ where: { userId: decodedToken.userId } })
-  let categories = await prisma.categories.findMany({ where: { userId: decodedToken.userId } })
+  const mappedCategories = await getMappedCategories(decodedToken.userId)
+  const mappedEntries = await getMappedEntries(decodedToken.userId, mappedCategories)
 
-  let mappedCategories: categoryProps[] = []
-
-  if (categories.length !== 0) {
-    mappedCategories = categories.map(category => {
-      //console.log(category)
-      return {
-        id: category.id,
-        name: category.name,
-        userId: category.userId,
-      }
-    })
-  }
-
-  return <EntriesPage />
+  return <EntriesPage entries={mappedEntries} categories={mappedCategories} />
 }

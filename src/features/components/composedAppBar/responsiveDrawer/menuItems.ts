@@ -11,7 +11,7 @@ export const menuItems = [
   },
   {
     name: 'Entries',
-    path: '/user/categories',
+    path: '/user/entries',
     icon: DescriptionIcon,
   },
   {

@@ -1,0 +1,27 @@
+.entriesManager {
+    display: block;
+    position: relative;
+}
+
+.newCategory {
+    margin: 1rem auto 1rem;
+    width: fit-content;
+    padding-right: 2.5rem;
+}
+
+.textField {
+    min-width: 20rem;
+}
+
+.divider {
+    width: 90%;
+    margin: 0.5rem auto 0.5rem;
+}
+
+.gridContainer {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr 3fr 3fr 3fr;
+    grid-column-gap: 0.5rem;
+    grid-row-gap: 0.5rem;
+}

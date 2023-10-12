@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
 
 export type entry = {
   id: string
@@ -7,6 +8,7 @@ export type entry = {
   isExpense: boolean
   date: string
   categoryId: string
+  categoryName: string
 }
 
 export type newEntry = {
@@ -39,8 +41,8 @@ export const entriesSlice = createSlice({
   name: 'entries',
   initialState,
   reducers: {
-    entriesAddEntry: (state, action) => {
-      state.isSubmitting = true
+    entriesSetEntries: (state, action: { payload: entry[]; type: string }) => {
+      state.entries = action.payload
     },
     entriesNewEntryChange: (
       state,
@@ -58,7 +60,7 @@ export const entriesSlice = createSlice({
     entriesNewEntryReset: state => {
       state.newEntry = initialState.newEntry
     },
-    entriesCallPost: state => {
+    entriesCallPost: (state, action: { payload: { router: AppRouterInstance }; type: string }) => {
       state.isSubmitting = true
     },
     entriesSetIsSubmittingFalse: state => {
@@ -68,7 +70,7 @@ export const entriesSlice = createSlice({
 })
 
 export const {
-  entriesAddEntry,
+  entriesSetEntries,
   entriesNewEntryChange,
   entriesNewEntryReset,
   entriesCallPost,

@@ -35,6 +35,9 @@ export const localization = {
       categoryExist: 'Category already exists.',
       addCategory: 'Add New category',
     },
+    entries: {
+      nonexistentCategory: 'Category does not exist.',
+    },
     errors: {
       networkError: 'Network error, please try again later.',
       unexpectedPrismaError: 'DB error, please contact admin.',

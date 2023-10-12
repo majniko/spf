@@ -1,29 +1,30 @@
 import { useAppDispatch, useAppSelector } from '@/lib/redux/hooks'
-import React, { useCallback, useEffect, useMemo } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { entriesCallPost, entriesNewEntryChange, entriesNewEntryReset } from '@/lib/redux/slices/entriesSlice'
 import dayjs, { Dayjs } from 'dayjs'
 import { SelectChangeEvent } from '@mui/material'
+import { dateToString } from '@/features/helpers/utils/dateToString'
+import { useRouter } from 'next/navigation'
 
 export const useAddEntryForm = () => {
   const dispatch = useAppDispatch()
+  const router = useRouter()
   const { newEntry, isSubmitting } = useAppSelector(state => state.entries)
   const { categories } = useAppSelector(state => state.categories)
   const { amount, isExpense, date, title, categoryId } = newEntry
-  const utcOffset = useMemo(() => dayjs().utcOffset(), [])
-  console.log('utcOffset', utcOffset)
 
   useEffect(() => {
     dispatch(
       entriesNewEntryChange({
         name: 'date',
-        value: dayjs().hour(0).minute(utcOffset).second(0).millisecond(0).toISOString(),
+        value: dateToString(dayjs()),
       })
     )
 
     return () => {
       dispatch(entriesNewEntryReset())
     }
-  }, [dispatch, utcOffset])
+  }, [dispatch])
 
   const onTitleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,19 +60,19 @@ export const useAddEntryForm = () => {
         dispatch(
           entriesNewEntryChange({
             name: 'date',
-            value: dayjs(newValue).hour(0).minute(utcOffset).second(0).millisecond(0).toISOString(),
+            value: dateToString(newValue),
           })
         )
       } else {
         dispatch(entriesNewEntryChange({ name: 'date', value: '' }))
       }
     },
-    [dispatch, utcOffset]
+    [dispatch]
   )
 
   const onSubmitButtonClick = useCallback(() => {
-    dispatch(entriesCallPost())
-  }, [dispatch])
+    dispatch(entriesCallPost({ router }))
+  }, [dispatch, router])
 
   return {
     title,
