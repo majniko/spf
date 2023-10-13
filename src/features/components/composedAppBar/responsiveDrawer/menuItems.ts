@@ -21,7 +21,7 @@ export const menuItems = [
   },
   {
     name: 'Dashboard',
-    path: '/user/landing-page',
+    path: '/user/dashboard',
     icon: SpaceDashboardIcon,
   },
 ]

@@ -3,7 +3,7 @@ import React from 'react'
 import { getTokenFromCookies } from '@/features/helpers/cookies/getTokenFromCookies'
 import { redirect } from 'next/navigation'
 
-export default function Landing(): React.ReactElement {
+export default function Dashboard(): React.ReactElement {
   const token = getTokenFromCookies()
 
   if (!token) {

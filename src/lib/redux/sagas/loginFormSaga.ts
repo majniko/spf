@@ -29,7 +29,7 @@ function* postLoginForm(action: ReturnType<typeof loginSetIsSubmitting>) {
     const { token, email } = response
     yield put({ type: userSaveLoginData.type, payload: { username, token, email } })
     yield call(saveTokenToCookies, token)
-    action.payload.router.push('/user/landing-page')
+    action.payload.router.push('/user/dashboard')
     return
   }
 
