@@ -7,7 +7,6 @@ import { categoriesSetCategories } from '@/lib/redux/slices/categoriesSlice'
 import { entriesSetEntries } from '@/lib/redux/slices/entriesSlice'
 import { EntriesManager } from '@/features/components/entriesManager/EntriesManager'
 import styles from './EntriesPage.module.css'
-import { CategoriesManager } from '@/features/components/categoriesManager/CategoriesManager'
 import { Divider } from '@mui/material'
 
 export type EntriesPageProps = {
