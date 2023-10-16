@@ -3,14 +3,27 @@ import prisma from '@/lib/prisma/prisma'
 import { dateToString } from '@/features/helpers/utils/dateToString'
 import { categoryProps } from '@/features/components/categoriesManager/category/Category'
 import { localization } from '@/features/localization/localization'
+import dayjs from 'dayjs'
 
 export const getMappedEntries = async (
   userId: string,
-  mappedCategories: categoryProps[]
+  mappedCategories: categoryProps[],
+  month: number,
+  year: number
 ): Promise<entryProps[] | []> => {
   let entries
+
+  const date = dayjs(new Date(year, month))
+  const fromOffset = dayjs(date).startOf('month').utcOffset()
+  let toOffset = dayjs(date).endOf('month').utcOffset()
+
+  const from = dayjs(date).startOf('month').minute(fromOffset)
+  const to = dayjs(date).endOf('month').minute(toOffset)
+
+  console.log(from.toDate(), to.toDate())
+
   try {
-    entries = await prisma.entries.findMany({ where: { userId } })
+    entries = await prisma.entries.findMany({ where: { userId, date: { gte: from.toDate(), lte: to.toDate() } } })
   } catch (e) {
     return []
   }

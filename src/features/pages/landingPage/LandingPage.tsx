@@ -1,4 +1,4 @@
-import styles from './LandingPage.module.css'
+import styles from './landingPage.module.css'
 import { localization } from '@/features/localization/localization'
 import { Button } from '@mui/material'
 import React from 'react'

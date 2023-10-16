@@ -5,6 +5,7 @@ import { categoriesSlice } from '@/lib/redux/slices/categoriesSlice'
 import { alertsSlice } from '@/lib/redux/slices/alertsSlice'
 import { entriesSlice } from '@/lib/redux/slices/entriesSlice'
 import { combineReducers } from 'redux'
+import { dashboardSlice } from '@/lib/redux/slices/dashboardSlice'
 
 export const rootReducer = (state: any, action: any) => {
   if (action.type === userLogout.type) {
@@ -20,4 +21,5 @@ const combinedReducer = combineReducers({
   [categoriesSlice.name]: categoriesSlice.reducer,
   [alertsSlice.name]: alertsSlice.reducer,
   [entriesSlice.name]: entriesSlice.reducer,
+  [dashboardSlice.name]: dashboardSlice.reducer,
 })
