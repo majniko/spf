@@ -6,7 +6,7 @@ import { validateUsername } from '@/features/helpers/validation/user/validateUse
 import { validateEmail } from '@/features/helpers/validation/user/validateEmail'
 import { validatePassword } from '@/features/helpers/validation/user/validatePassword'
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request) {
   const { username, email, password } = await req.json()
 
   //since the same validation is done on the client side, this is just a precaution in case the client side validation fails or is bypassed

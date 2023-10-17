@@ -1,8 +1,6 @@
 import React from 'react'
 import { decodeTokenOrRedirect } from '@/features/helpers/server/decodeTokenOrRedirect'
-import { AddEntryForm } from '@/features/components/addEntryForm/AddEntryForm'
 import { AddEntryPage } from '@/features/pages/addEntryPage/AddEntryPage'
-import prisma from '@/lib/prisma/prisma'
 import { categoryProps } from '@/features/components/categoriesManager/category/Category'
 import { getMappedCategories } from '@/features/helpers/server/getMappedCategories'
 
