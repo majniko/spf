@@ -1,15 +1,21 @@
 import { useAppDispatch, useAppSelector } from '@/lib/redux/hooks'
 import React, { useCallback, useEffect } from 'react'
-import { entriesCallPost, entriesNewEntryChange, entriesNewEntryReset } from '@/lib/redux/slices/entriesSlice'
+import {
+  entriesCallPost,
+  entriesNewEntryChange,
+  entriesNewEntryReset,
+  entriesSetError,
+} from '@/lib/redux/slices/entriesSlice'
 import dayjs, { Dayjs } from 'dayjs'
 import { SelectChangeEvent } from '@mui/material'
 import { dateToString } from '@/features/helpers/utils/dateToString'
 import { useRouter } from 'next/navigation'
+import { validateNewEntry } from '@/features/helpers/validation/entry/validateNewEntry'
 
 export const useAddEntryForm = () => {
   const dispatch = useAppDispatch()
   const router = useRouter()
-  const { newEntry, isSubmitting } = useAppSelector(state => state.entries)
+  const { newEntry, isSubmitting, isError } = useAppSelector(state => state.entries)
   const { categories } = useAppSelector(state => state.categories)
   const { amount, isExpense, date, title, categoryId } = newEntry
 
@@ -71,8 +77,12 @@ export const useAddEntryForm = () => {
   )
 
   const onSubmitButtonClick = useCallback(() => {
-    dispatch(entriesCallPost({ router }))
-  }, [dispatch, router])
+    if (validateNewEntry({ newEntry, dispatch })) {
+      dispatch(entriesCallPost({ router }))
+    } else {
+      dispatch(entriesSetError(false))
+    }
+  }, [dispatch, router, newEntry])
 
   return {
     title,
@@ -88,5 +98,6 @@ export const useAddEntryForm = () => {
     onDateChange,
     onCategoryChange,
     onSubmitButtonClick,
+    isError,
   }
 }

@@ -16,6 +16,7 @@ import { call, put, select, takeLatest } from '@redux-saga/core/effects'
 import { postRegister } from '@/features/helpers/clientAPICalls/postRegister'
 import { getRegisterFormState } from '@/lib/redux/selectors'
 import { localization } from '@/features/localization/localization'
+import { alertsAddNewAlert } from '@/lib/redux/slices/alertsSlice'
 
 type response = {
   message: string
@@ -33,25 +34,27 @@ function* postRegisterForm(action: ReturnType<typeof registerSetIsSubmitting>) {
     password: password.value,
   })
 
-  console.log(response)
-
   if (response.message === 'user_created') {
+    yield put(alertsAddNewAlert({ message: localization.en.registerForm.accountCreated, severity: 'success' }))
     yield put({ type: registerSetIsSuccess.type, payload: true })
     return
   }
 
   if (response.message === 'username_exists') {
+    yield put(alertsAddNewAlert({ message: localization.en.registerForm.request.usernameError, severity: 'error' }))
     yield put({ type: registerSetUsernameError.type, payload: localization.en.registerForm.request.usernameError })
     yield put({ type: registerSetIsSubmitting.type, payload: false })
     return
   }
   if (response.message === 'email_exists') {
+    yield put(alertsAddNewAlert({ message: localization.en.registerForm.request.emailError, severity: 'error' }))
     yield put({ type: registerSetEmailError.type, payload: localization.en.registerForm.request.emailError })
     yield put({ type: registerSetIsSubmitting.type, payload: false })
     return
   }
 
   if (response.error === 'network_error' || response.error === 'invalid_input') {
+    yield put(alertsAddNewAlert({ message: localization.en.errors.networkError, severity: 'error' }))
     yield put({ type: registerSetNetworkError.type, payload: true })
     yield put({ type: registerSetIsSubmitting.type, payload: false })
   }

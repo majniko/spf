@@ -3,8 +3,8 @@ import { NextResponse } from 'next/server'
 import { comparePwdWithHash } from '@/features/helpers/utils/comparePwdWithHash'
 import prisma from '@/lib/prisma/prisma'
 import { prismaUserProps } from '@/lib/prisma/types'
-import { validateUsername } from '@/features/helpers/validation/validateUsername'
-import { validatePassword } from '@/features/helpers/validation/validatePassword'
+import { validateUsername } from '@/features/helpers/validation/user/validateUsername'
+import { validatePassword } from '@/features/helpers/validation/user/validatePassword'
 
 const jwtSecret: Secret = process.env.JWT_SECRET!
 

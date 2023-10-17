@@ -22,12 +22,14 @@ export type newEntry = {
 export type entriesState = {
   entries: entry[]
   isSubmitting: boolean
+  isError: boolean
   newEntry: newEntry
 }
 
 const initialState: entriesState = {
   entries: [],
   isSubmitting: false,
+  isError: false,
   newEntry: {
     title: '',
     amount: 0,
@@ -66,6 +68,9 @@ export const entriesSlice = createSlice({
     entriesSetIsSubmittingFalse: state => {
       state.isSubmitting = false
     },
+    entriesSetError: (state, action) => {
+      state.isError = action.payload
+    },
   },
 })
 
@@ -75,4 +80,5 @@ export const {
   entriesNewEntryReset,
   entriesCallPost,
   entriesSetIsSubmittingFalse,
+  entriesSetError,
 } = entriesSlice.actions

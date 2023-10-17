@@ -49,6 +49,11 @@ function* postNewCategory(action: ReturnType<typeof categoriesCallPost>) {
     yield put(categoriesIsSubmittingSetFalse())
     return
   }
+
+  if (response.message === 'network_error') {
+    yield put(alertsAddNewAlert({ message: localization.en.errors.networkError, severity: 'error' }))
+    return
+  }
 }
 
 function* editCategory(action: ReturnType<typeof categoriesCallPut>) {
@@ -87,6 +92,11 @@ function* editCategory(action: ReturnType<typeof categoriesCallPut>) {
     yield put(categoriesClearEdit())
     return
   }
+
+  if (response.message === 'network_error') {
+    yield put(alertsAddNewAlert({ message: localization.en.errors.networkError, severity: 'error' }))
+    return
+  }
 }
 
 function* deleteCategory(action: ReturnType<typeof categoriesCallPut>) {
@@ -113,6 +123,11 @@ function* deleteCategory(action: ReturnType<typeof categoriesCallPut>) {
     yield put(alertsAddNewAlert({ message: localization.en.errors.unexpectedPrismaError, severity: 'error' }))
     yield put(categoriesIsSubmittingSetFalse())
     yield put(categoriesClearEdit())
+    return
+  }
+
+  if (response.message === 'network_error') {
+    yield put(alertsAddNewAlert({ message: localization.en.errors.networkError, severity: 'error' }))
     return
   }
 }

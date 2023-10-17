@@ -16,6 +16,7 @@ export const localization = {
     registerForm: {
       register: 'Register',
       loginLink: 'return to login page',
+      accountCreated: 'Account successfully created.',
       request: {
         usernameError: 'Username is already taken.',
         emailError: 'This email is already associated with an account.',
@@ -42,6 +43,12 @@ export const localization = {
     entries: {
       nonexistentCategory: 'Category does not exist.',
       entryAdded: 'Entry successfully added.',
+      serverValidationError: 'Server validation error.',
+      validation: {
+        title: 'Title must be between 3 and 20 characters.',
+        category: 'Please select a category.',
+        date: "Injecting state, aren't we?",
+      },
     },
     errors: {
       networkError: 'Network error, please try again later.',

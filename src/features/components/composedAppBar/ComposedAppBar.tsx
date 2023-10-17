@@ -13,13 +13,20 @@ export type ComposedAppBarProps = {
 }
 
 export const ComposedAppBar = ({ decodedToken }: ComposedAppBarProps) => {
-  const { onLogoutButtonClick, username } = useComposedAppBar(decodedToken)
+  const { onLogoutButtonClick, username, mobileDrawerOpen, handleDrawerToggle } = useComposedAppBar(decodedToken)
 
   return (
     <>
       <AppBar className={styles.appBar}>
         <Toolbar>
-          <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+            className={styles.menuIcon}
+          >
             <MenuIcon />
           </IconButton>
           <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
@@ -43,7 +50,7 @@ export const ComposedAppBar = ({ decodedToken }: ComposedAppBarProps) => {
           )}
         </Toolbar>
       </AppBar>
-      <ResponsiveDrawer />
+      <ResponsiveDrawer mobileDrawerOpen={mobileDrawerOpen} handleDrawerToggle={handleDrawerToggle} />
     </>
   )
 }

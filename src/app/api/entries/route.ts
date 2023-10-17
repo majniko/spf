@@ -2,6 +2,7 @@ import { getDecodedToken } from '@/features/helpers/server/getDecodedToken'
 import { NextResponse } from 'next/server'
 import { postEntryCallProps } from '@/features/helpers/clientAPICalls/entries/postEntryCall'
 import prisma from '@/lib/prisma/prisma'
+import { validateNewEntryOnServer } from '@/features/helpers/validation/entry/validateNewEntry'
 
 type postReqProps = postEntryCallProps
 
@@ -15,6 +16,10 @@ export async function POST(req: Request) {
   const { title, amount, isExpense, categoryId, date } = newEntry
 
   if (!title || !amount || !isExpense || !categoryId || !date) {
+    return NextResponse.json({ message: 'invalid_request' })
+  }
+
+  if (validateNewEntryOnServer({ newEntry })) {
     return NextResponse.json({ message: 'invalid_request' })
   }
 

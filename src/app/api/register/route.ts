@@ -2,9 +2,9 @@ import { prismaUserProps } from '@/lib/prisma/types'
 import prisma from '@/lib/prisma/prisma'
 import { NextResponse } from 'next/server'
 import { hashPwd } from '@/features/helpers/utils/hashPwd'
-import { validateUsername } from '@/features/helpers/validation/validateUsername'
-import { validateEmail } from '@/features/helpers/validation/validateEmail'
-import { validatePassword } from '@/features/helpers/validation/validatePassword'
+import { validateUsername } from '@/features/helpers/validation/user/validateUsername'
+import { validateEmail } from '@/features/helpers/validation/user/validateEmail'
+import { validatePassword } from '@/features/helpers/validation/user/validatePassword'
 
 export async function POST(req: Request, res: Response) {
   const { username, email, password } = await req.json()

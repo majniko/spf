@@ -23,6 +23,7 @@ export const AddEntryForm = () => {
     title,
     isSubmitting,
     onSubmitButtonClick,
+    isError,
   } = useAddEntryForm()
 
   return (
@@ -35,11 +36,15 @@ export const AddEntryForm = () => {
           value={title}
           onChange={onTitleChange}
           className={styles.titleTextField}
+          error={isError}
+          disabled={isSubmitting}
         />
         <TextField
           id="amount"
           label="Amount"
           variant="outlined"
+          error={isError}
+          disabled={isSubmitting}
           value={amount === 0 ? '' : amount}
           onChange={onAmountChange}
           className={styles.amountTextField}
@@ -48,7 +53,7 @@ export const AddEntryForm = () => {
           }}
         />
         <FormControlLabel
-          control={<Checkbox checked={isExpense} onChange={onIsExpenseChange} />}
+          control={<Checkbox checked={isExpense} onChange={onIsExpenseChange} disabled={isSubmitting} />}
           label="isExpense"
           className={styles.isExpenseCheckBox}
         />
@@ -58,6 +63,8 @@ export const AddEntryForm = () => {
             id="category-select"
             label="Category"
             variant="outlined"
+            error={isError}
+            disabled={isSubmitting}
             value={categoryId}
             onChange={onCategoryChange}
           >

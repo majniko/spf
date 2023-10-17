@@ -10,9 +10,9 @@ import {
   registerSetUsernameError,
   registerClearForm,
 } from '@/lib/redux/slices/registerFormSlice'
-import { validateUsername } from '@/features/helpers/validation/validateUsername'
-import { validateEmail } from '@/features/helpers/validation/validateEmail'
-import { validatePassword } from '@/features/helpers/validation/validatePassword'
+import { validateUsername } from '@/features/helpers/validation/user/validateUsername'
+import { validateEmail } from '@/features/helpers/validation/user/validateEmail'
+import { validatePassword } from '@/features/helpers/validation/user/validatePassword'
 import { localization } from '@/features/localization/localization'
 
 export const useRegisterForm = () => {

@@ -13,3 +13,9 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.menuIcon {
+    @media (max-width: 599px) {
+        visibility: hidden;
+    }
+}

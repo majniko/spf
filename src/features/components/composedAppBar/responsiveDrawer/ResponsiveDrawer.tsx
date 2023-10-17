@@ -19,14 +19,15 @@ import styles from './ResponsiveDrawer.module.css'
 import { menuItems } from '@/features/components/composedAppBar/responsiveDrawer/menuItems'
 import Link from 'next/link'
 
+export type ResponsiveDrawerProps = {
+  mobileDrawerOpen: boolean
+  handleDrawerToggle: () => void
+}
+
 const drawerWidth = 240
 
-export default function ResponsiveDrawer() {
-  const [mobileOpen, setMobileOpen] = React.useState(false)
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen)
-  }
+export default function ResponsiveDrawer(props: ResponsiveDrawerProps) {
+  const { mobileDrawerOpen, handleDrawerToggle } = props
 
   const drawer = (
     <div className={styles.responsiveDrawer}>
@@ -48,39 +49,13 @@ export default function ResponsiveDrawer() {
     </div>
   )
 
-  //const container = window !== undefined ? () => window().document.body : undefined;
-
   return (
     <Box sx={{ display: 'flex', position: 'fixed' }} className={styles.responsiveDrawer}>
       <CssBaseline />
-      {/*      <AppBar
-        position="fixed"
-        sx={{
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-          ml: { sm: `${drawerWidth}px` },
-        }}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Responsive drawer
-          </Typography>
-        </Toolbar>
-      </AppBar>*/}
       <Box component="nav" sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }} aria-label="mailbox folders">
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
-          //container={container}
           variant="temporary"
-          open={mobileOpen}
+          open={mobileDrawerOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
             keepMounted: true, // Better open performance on mobile.
