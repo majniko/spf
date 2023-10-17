@@ -16,11 +16,17 @@ export async function POST(req: Request, res: Response) {
     return NextResponse.json({ message: 'invalid_credentials' })
   }
 
-  const user: prismaUserProps | null = await prisma.users.findUnique({
-    where: {
-      username: username,
-    },
-  })
+  let user: prismaUserProps | null = null
+
+  try {
+    user = await prisma.users.findUnique({
+      where: {
+        username: username,
+      },
+    })
+  } catch (e) {
+    return NextResponse.json({ message: 'unexpected_prisma_error' })
+  }
 
   if (!user) {
     return NextResponse.json({ message: 'invalid_credentials' })

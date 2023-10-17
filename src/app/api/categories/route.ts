@@ -63,8 +63,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: 'unexpected_prisma_error' })
   }
 
-  console.log('added')
-
   return NextResponse.json({ message: 'success' })
 }
 

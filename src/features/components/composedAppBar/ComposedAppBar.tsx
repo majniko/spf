@@ -6,6 +6,7 @@ import { useComposedAppBar } from '@/features/components/composedAppBar/useCompo
 import styles from './ComposedAppBar.module.css'
 import { JwtPayload } from 'jsonwebtoken'
 import ResponsiveDrawer from '@/features/components/composedAppBar/responsiveDrawer/ResponsiveDrawer'
+import { localization } from '@/features/localization/localization'
 
 export type ComposedAppBarProps = {
   decodedToken: JwtPayload
@@ -22,7 +23,7 @@ export const ComposedAppBar = ({ decodedToken }: ComposedAppBarProps) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-            AppName
+            {localization.en.app.appName}
           </Typography>
           {username ? (
             <>
@@ -30,13 +31,13 @@ export const ComposedAppBar = ({ decodedToken }: ComposedAppBarProps) => {
                 Logged in as: {username}
               </Typography>
               <Button onClick={onLogoutButtonClick} color={'inherit'} variant={'outlined'}>
-                Logout
+                {localization.en.loginForm.logout}
               </Button>
             </>
           ) : (
             <>
               <Button onClick={onLogoutButtonClick} color={'inherit'} variant={'outlined'}>
-                Login
+                {localization.en.loginForm.login}
               </Button>
             </>
           )}

@@ -4,13 +4,12 @@ import { AddEntryForm } from '@/features/components/addEntryForm/AddEntryForm'
 import { AddEntryPage } from '@/features/pages/addEntryPage/AddEntryPage'
 import prisma from '@/lib/prisma/prisma'
 import { categoryProps } from '@/features/components/categoriesManager/category/Category'
+import { getMappedCategories } from '@/features/helpers/server/getMappedCategories'
 
 export default async function AddEntry(): Promise<React.ReactElement> {
   const decodedToken = decodeTokenOrRedirect()
 
-  let categories = await prisma.categories.findMany({ where: { userId: decodedToken.userId } })
-
-  //console.log(categories)
+  const categories = await getMappedCategories(decodedToken.userId)
 
   let mappedCategories: categoryProps[] = []
 

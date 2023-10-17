@@ -1,5 +1,8 @@
 export const localization = {
   en: {
+    app: {
+      appName: 'Personal Finance Tracker',
+    },
     user: {
       username: 'Username:',
       email: 'Email:',
@@ -33,14 +36,20 @@ export const localization = {
     categories: {
       title: 'Categories',
       categoryExist: 'Category already exists.',
+      addCategorySuccess: 'Category successfully added.',
       addCategory: 'Add New category',
     },
     entries: {
       nonexistentCategory: 'Category does not exist.',
+      entryAdded: 'Entry successfully added.',
     },
     errors: {
       networkError: 'Network error, please try again later.',
       unexpectedPrismaError: 'DB error, please contact admin.',
+      invalidToken: 'Invalid token, please login again.',
+    },
+    general: {
+      changesSaved: 'Changes successfully saved.',
     },
   },
 }

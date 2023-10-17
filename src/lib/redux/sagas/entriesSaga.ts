@@ -13,14 +13,16 @@ type postEntrySagaResponse = {
 function* postEntrySaga(action: ReturnType<typeof entriesCallPost>) {
   const { newEntry }: entriesState = yield select(getEntriesState)
 
-  try {
-    const response: postEntrySagaResponse = yield call(postEntryCall, { newEntry })
-    yield put(alertsAddNewAlert({ message: response.message, severity: 'success' }))
+  const response: postEntrySagaResponse = yield call(postEntryCall, { newEntry })
+
+  if (response.message === 'entry_created') {
+    yield put(alertsAddNewAlert({ message: localization.en.entries.entryAdded, severity: 'success' }))
     yield put(entriesSetIsSubmittingFalse())
     action.payload.router.refresh()
-  } catch (error) {
-    yield put(alertsAddNewAlert({ message: localization.en.errors.networkError, severity: 'error' }))
+    return
   }
+
+  yield put(alertsAddNewAlert({ message: localization.en.errors.networkError, severity: 'error' }))
 }
 
 export function* entriesSaga() {

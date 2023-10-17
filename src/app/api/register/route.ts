@@ -14,21 +14,33 @@ export async function POST(req: Request, res: Response) {
     return NextResponse.json({ message: 'invalid_input' })
   }
 
-  const userExists: prismaUserProps | null = await prisma.users.findUnique({
-    where: {
-      username: username,
-    },
-  })
+  let userExists: prismaUserProps | null = null
+
+  try {
+    userExists = await prisma.users.findUnique({
+      where: {
+        username: username,
+      },
+    })
+  } catch (e) {
+    return NextResponse.json({ message: 'unexpected_prisma_error' })
+  }
 
   if (userExists) {
     return NextResponse.json({ message: 'username_exists' })
   }
 
-  const emailExists: prismaUserProps | null = await prisma.users.findUnique({
-    where: {
-      email: email,
-    },
-  })
+  let emailExists: prismaUserProps | null = null
+
+  try {
+    emailExists = await prisma.users.findUnique({
+      where: {
+        email: email,
+      },
+    })
+  } catch (e) {
+    return NextResponse.json({ message: 'unexpected_prisma_error' })
+  }
 
   if (emailExists) {
     return NextResponse.json({ message: 'email_exists' })

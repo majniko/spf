@@ -13,6 +13,7 @@ import { alertsAddNewAlert } from '@/lib/redux/slices/alertsSlice'
 import { localization } from '@/features/localization/localization'
 import { putCategoryCall } from '@/features/helpers/clientAPICalls/categories/putCategoryCall'
 import { deleteCategoryCall } from '@/features/helpers/clientAPICalls/categories/deleteCategoryCall'
+import { userLogout } from '@/lib/redux/slices/userSlice'
 
 type responseProps = {
   message: string
@@ -26,12 +27,20 @@ function* postNewCategory(action: ReturnType<typeof categoriesCallPost>) {
 
   if (response.message === 'success') {
     yield put(categoriesIsSubmittingSetFalse())
+    yield put(alertsAddNewAlert({ message: localization.en.categories.addCategorySuccess, severity: 'success' }))
     action.payload.router.refresh()
     return
   }
+
   if (response.message === 'category_exists') {
     yield put(alertsAddNewAlert({ message: localization.en.categories.categoryExist, severity: 'error' }))
     yield put(categoriesIsSubmittingSetFalse())
+    return
+  }
+
+  if (response.message === 'invalid_token') {
+    yield put(alertsAddNewAlert({ message: localization.en.errors.invalidToken, severity: 'error' }))
+    yield put(userLogout({ router: action.payload.router }))
     return
   }
 
@@ -54,6 +63,7 @@ function* editCategory(action: ReturnType<typeof categoriesCallPut>) {
   if (response.message === 'success') {
     yield put(categoriesIsSubmittingSetFalse())
     yield put(categoriesClearEdit())
+    yield put(alertsAddNewAlert({ message: localization.en.general.changesSaved, severity: 'success' }))
     action.payload.router.refresh()
     return
   }
@@ -62,6 +72,12 @@ function* editCategory(action: ReturnType<typeof categoriesCallPut>) {
     yield put(alertsAddNewAlert({ message: localization.en.categories.categoryExist, severity: 'error' }))
     yield put(categoriesIsSubmittingSetFalse())
     yield put(categoriesClearEdit())
+    return
+  }
+
+  if (response.message === 'invalid_token') {
+    yield put(alertsAddNewAlert({ message: localization.en.errors.invalidToken, severity: 'error' }))
+    yield put(userLogout({ router: action.payload.router }))
     return
   }
 
@@ -82,7 +98,14 @@ function* deleteCategory(action: ReturnType<typeof categoriesCallPut>) {
   if (response.message === 'success') {
     yield put(categoriesIsSubmittingSetFalse())
     yield put(categoriesClearEdit())
+    yield put(alertsAddNewAlert({ message: localization.en.general.changesSaved, severity: 'success' }))
     action.payload.router.refresh()
+    return
+  }
+
+  if (response.message === 'invalid_token') {
+    yield put(alertsAddNewAlert({ message: localization.en.errors.invalidToken, severity: 'error' }))
+    yield put(userLogout({ router: action.payload.router }))
     return
   }
 
