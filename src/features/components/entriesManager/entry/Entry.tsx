@@ -12,7 +12,7 @@ export type entryProps = {
 }
 
 export const Entry = (props: entryProps) => {
-  const { title, amount, isExpense, categoryId, categoryName, date } = props
+  const { title, amount, isExpense, categoryName, date } = props
 
   return (
     <>

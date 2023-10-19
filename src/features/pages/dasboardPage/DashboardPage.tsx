@@ -5,7 +5,7 @@ import { useAppDispatch } from '@/lib/redux/hooks'
 import React, { useEffect } from 'react'
 import { dashboardSetData, graphData } from '@/lib/redux/slices/dashboardSlice'
 import styles from './dashboardPage.module.css'
-import { Divider, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material'
+import { Divider, FormControl, FormControlLabel, Radio, RadioGroup } from '@mui/material'
 import { GraphSummary } from '@/features/components/graphSummary/GraphSummary'
 
 export type DashboardPageProps = {
