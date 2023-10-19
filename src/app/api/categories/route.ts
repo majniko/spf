@@ -21,8 +21,11 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: 'invalid_token' })
   }
   const { newCategoryName }: postReqProps = await req.json()
-  let user, category
+  let category
 
+  //this verification is not needed because the user is already verified by token, but I'll leave it here for future reference
+  //without knowing jwt secret it's impossible to forge a token
+  /*let user
   try {
     user = await prisma.users.findUnique({ where: { id: decodedCookie.userId } })
   } catch (e) {
@@ -31,15 +34,13 @@ export async function POST(req: Request) {
 
   if (!user) {
     return NextResponse.json({ message: 'invalid_token' })
-  }
-
-  console.log(newCategoryName)
+  }*/
 
   try {
     category = await prisma.categories.findMany({
       where: {
         name: newCategoryName,
-        userId: user.id,
+        userId: decodedCookie.userId,
       },
     })
     if (category.length > 0) {
@@ -53,14 +54,12 @@ export async function POST(req: Request) {
     await prisma.categories.create({
       data: {
         name: newCategoryName,
-        userId: user.id,
+        userId: decodedCookie.userId,
       },
     })
   } catch (e) {
     return NextResponse.json({ message: 'unexpected_prisma_error' })
   }
-
-  console.log('added')
 
   return NextResponse.json({ message: 'success' })
 }

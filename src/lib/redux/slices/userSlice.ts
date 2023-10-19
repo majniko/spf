@@ -21,8 +21,6 @@ export const userSlice = createSlice({
       state.email = action.payload.email
     },
     userLogout: (state: userSliceState, action: PayloadAction<{ router: AppRouterInstance }>) => {
-      state.username = ''
-      state.email = ''
       clearTokenFromCookies()
     },
     userSetUsername: (state: userSliceState, action: PayloadAction<string>) => {

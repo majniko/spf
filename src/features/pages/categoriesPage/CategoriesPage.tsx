@@ -16,7 +16,6 @@ export type CategoriesPageProps = {
 export const CategoriesPage = (props: CategoriesPageProps) => {
   const { categories } = props
   const dispatch = useAppDispatch()
-  const userSelector = useAppSelector(state => state.user)
 
   useEffect(() => {
     dispatch(categoriesSetCategories(categories))
@@ -24,8 +23,9 @@ export const CategoriesPage = (props: CategoriesPageProps) => {
 
   return (
     <div className={styles.categoriesPage}>
-      <h1>Categories</h1>
-      <Divider />
+      <div className={styles.title}>
+        <h1>Categories</h1>
+      </div>
       <CategoriesManager />
     </div>
   )

@@ -3,12 +3,12 @@ import { NextResponse } from 'next/server'
 import { comparePwdWithHash } from '@/features/helpers/utils/comparePwdWithHash'
 import prisma from '@/lib/prisma/prisma'
 import { prismaUserProps } from '@/lib/prisma/types'
-import { validateUsername } from '@/features/helpers/validation/validateUsername'
-import { validatePassword } from '@/features/helpers/validation/validatePassword'
+import { validateUsername } from '@/features/helpers/validation/user/validateUsername'
+import { validatePassword } from '@/features/helpers/validation/user/validatePassword'
 
 const jwtSecret: Secret = process.env.JWT_SECRET!
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request) {
   const { username, password } = await req.json()
 
   //since the same validation is done on the client side, this is just a precaution in case the client side validation fails or is bypassed
@@ -16,11 +16,17 @@ export async function POST(req: Request, res: Response) {
     return NextResponse.json({ message: 'invalid_credentials' })
   }
 
-  const user: prismaUserProps | null = await prisma.users.findUnique({
-    where: {
-      username: username,
-    },
-  })
+  let user: prismaUserProps | null = null
+
+  try {
+    user = await prisma.users.findUnique({
+      where: {
+        username: username,
+      },
+    })
+  } catch (e) {
+    return NextResponse.json({ message: 'unexpected_prisma_error' })
+  }
 
   if (!user) {
     return NextResponse.json({ message: 'invalid_credentials' })

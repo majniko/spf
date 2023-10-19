@@ -11,6 +11,7 @@
 
 .category {
     margin: 0 auto 0.5rem;
+    width: fit-content;
 }
 
 .textField {

@@ -1,3 +1,11 @@
 .categoriesPage {
     margin: 0;
+    position: relative;
+    display: block;
+}
+
+.title {
+    float: left;
+    position: relative;
+    margin-left: 0;
 }

@@ -1,0 +1,48 @@
+.isExpense {
+    display: block;
+    float: left;
+    background-color: lightgray;
+    padding: 0.5rem;
+    border-radius: 5px;
+    min-height: 1.5rem;
+}
+
+.entryName {
+    display: block;
+    float: left;
+    background-color: lightgray;
+    padding: 0.5rem;
+    border-radius: 5px;
+    min-height: 1.5rem;
+}
+
+.amount {
+    display: block;
+    float: left;
+    background-color: lightgray;
+    padding: 0.5rem;
+    border-radius: 5px;
+    min-height: 1.5rem;
+}
+
+.category {
+    display: block;
+    float: left;
+    background-color: lightgray;
+    padding: 0.5rem;
+    border-radius: 5px;
+    min-height: 1.5rem;
+}
+
+.date {
+    display: grid;
+    float: left;
+    background-color: lightgray;
+    padding: 0.5rem;
+    border-radius: 5px;
+    min-height: 1.5rem;
+}
+
+.textField {
+    min-width: 20rem;
+}

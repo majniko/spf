@@ -11,6 +11,8 @@ import {
 import { postLogin } from '@/features/helpers/clientAPICalls/postLogin'
 import { userSaveLoginData } from '@/lib/redux/slices/userSlice'
 import { saveTokenToCookies } from '@/features/helpers/cookies/saveTokenToCookies'
+import { alertsAddNewAlert } from '@/lib/redux/slices/alertsSlice'
+import { localization } from '@/features/localization/localization'
 
 type response = {
   token: string
@@ -29,11 +31,12 @@ function* postLoginForm(action: ReturnType<typeof loginSetIsSubmitting>) {
     const { token, email } = response
     yield put({ type: userSaveLoginData.type, payload: { username, token, email } })
     yield call(saveTokenToCookies, token)
-    action.payload.router.push('/user/landing-page')
+    action.payload.router.push('/user/dashboard')
     return
   }
 
   if (response.message === 'invalid_credentials') {
+    yield put(alertsAddNewAlert({ message: localization.en.loginForm.loginError, severity: 'error' }))
     yield put({ type: loginSetIsError.type, payload: true })
     yield put({ type: loginSetIsSubmitting.type, payload: false })
     return

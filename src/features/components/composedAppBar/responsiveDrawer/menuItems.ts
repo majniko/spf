@@ -11,17 +11,17 @@ export const menuItems = [
   },
   {
     name: 'Entries',
-    path: '/user/categories',
+    path: '/user/entries',
     icon: DescriptionIcon,
   },
   {
     name: 'Add Entry',
-    path: '/user/categories',
+    path: '/user/add-entry',
     icon: NoteAddIcon,
   },
   {
     name: 'Dashboard',
-    path: '/user/landing-page',
+    path: '/user/dashboard',
     icon: SpaceDashboardIcon,
   },
 ]

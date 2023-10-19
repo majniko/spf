@@ -1,0 +1,17 @@
+.categoryName {
+    display: block;
+    float: left;
+    background-color: lightgray;
+    padding: 0.5rem;
+    border-radius: 5px;
+    min-height: 1.5rem;
+}
+
+.amount {
+    display: block;
+    float: left;
+    background-color: lightgray;
+    padding: 0.5rem;
+    border-radius: 5px;
+    min-height: 1.5rem;
+}

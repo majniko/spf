@@ -1,0 +1,16 @@
+.entriesPage {
+    margin: 0 auto;
+    position: relative;
+    display: block;
+    width: 90%;
+}
+
+.title {
+    float: left;
+    position: relative;
+}
+
+.divider {
+    width: 100%;
+    margin: 0.5rem auto 0.5rem;
+}
