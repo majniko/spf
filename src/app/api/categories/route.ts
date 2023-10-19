@@ -36,8 +36,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: 'invalid_token' })
   }*/
 
-  console.log(newCategoryName)
-
   try {
     category = await prisma.categories.findMany({
       where: {

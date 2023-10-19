@@ -5,7 +5,7 @@ import { useAppDispatch } from '@/lib/redux/hooks'
 import React, { useEffect } from 'react'
 import { dashboardSetData, graphData } from '@/lib/redux/slices/dashboardSlice'
 import styles from './dashboardPage.module.css'
-import { Divider } from '@mui/material'
+import { Divider, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material'
 import { GraphSummary } from '@/features/components/graphSummary/GraphSummary'
 
 export type DashboardPageProps = {
@@ -17,6 +17,11 @@ export type DashboardPageProps = {
 
 export const DashboardPage = (props: DashboardPageProps) => {
   const dispatch = useAppDispatch()
+  const [displayedGraph, setDisplayedGraph] = React.useState('expense')
+
+  const handleDisplayedGraphChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDisplayedGraph((event.target as HTMLInputElement).value)
+  }
 
   useEffect(() => {
     dispatch(dashboardSetData(props))
@@ -48,8 +53,22 @@ export const DashboardPage = (props: DashboardPageProps) => {
 
   return (
     <DashboardPageWrapper>
-      <GraphSummary isExpense={true} />
-      <GraphSummary isExpense={false} />
+      <>
+        <FormControl>
+          <RadioGroup
+            row
+            aria-labelledby="select-expense-or-income"
+            name="expense-income-radio-buttons-group"
+            value={displayedGraph}
+            onChange={handleDisplayedGraphChange}
+          >
+            <FormControlLabel value="expense" control={<Radio />} label="Expense" />
+            <FormControlLabel value="income" control={<Radio />} label="Income" />
+          </RadioGroup>
+        </FormControl>
+      </>
+      {displayedGraph === 'expense' && <GraphSummary isExpense={true} />}
+      {displayedGraph === 'income' && <GraphSummary isExpense={false} />}
     </DashboardPageWrapper>
   )
 }

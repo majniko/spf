@@ -20,8 +20,6 @@ export const getMappedEntries = async (
   const from = dayjs(date).startOf('month').minute(fromOffset)
   const to = dayjs(date).endOf('month').minute(toOffset)
 
-  console.log(from.toDate(), to.toDate())
-
   try {
     entries = await prisma.entries.findMany({ where: { userId, date: { gte: from.toDate(), lte: to.toDate() } } })
   } catch (e) {

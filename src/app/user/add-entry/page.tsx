@@ -13,7 +13,6 @@ export default async function AddEntry(): Promise<React.ReactElement> {
 
   if (categories.length !== 0) {
     mappedCategories = categories.map(category => {
-      //console.log(category)
       return {
         id: category.id,
         name: category.name,

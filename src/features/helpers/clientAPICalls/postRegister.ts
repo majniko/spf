@@ -5,7 +5,6 @@ export type postRegisterProps = {
 }
 
 export const postRegister = async ({ username, email, password }: postRegisterProps) => {
-  console.log(username, email, password)
   try {
     const response = await fetch('/api/register', {
       method: 'POST',

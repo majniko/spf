@@ -23,8 +23,6 @@ export const EntriesPage = (props: EntriesPageProps) => {
     dispatch(entriesSetEntries(entries))
   })
 
-  console.log(entries, categories)
-
   return (
     <div className={styles.entriesPage}>
       <div className={styles.title}>

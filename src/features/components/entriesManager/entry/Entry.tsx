@@ -12,9 +12,7 @@ export type entryProps = {
 }
 
 export const Entry = (props: entryProps) => {
-  const { id, title, amount, isExpense, categoryId, categoryName, date } = props
-
-  console.log(id, title, amount, isExpense, categoryId, date)
+  const { title, amount, isExpense, categoryId, categoryName, date } = props
 
   return (
     <>
