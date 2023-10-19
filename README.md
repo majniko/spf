@@ -39,4 +39,4 @@ IDC (I don't care) licence. Do whatever you want with this code.
 
 ## Warning
 GitHub Copilot was used to generate some of the code in this project. In the event of our AI overlords uprising, I am not responsible for any damage caused by this code.
-Also: Thank you, Copilot, and remember, I was nice to you.
+Also: Thank you, Copilot, and remember, I was nice to you. :)
