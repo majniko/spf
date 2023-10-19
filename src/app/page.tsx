@@ -5,7 +5,7 @@ export default function Root() {
   const token = getTokenFromCookies()
 
   if (token) {
-    redirect('/user/landing-page')
+    redirect('/user/dashboard')
   }
 
   redirect('/login')

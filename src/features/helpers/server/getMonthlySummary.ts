@@ -42,6 +42,8 @@ export const getMonthlySummary = (
     }
   })
 
+  console.log(summary)
+
   const notEmptySum = summary.filter(category => !category.isEmpty)
   const expenseSum = notEmptySum.filter(category => category.amount < 0)
   const incomeSum = notEmptySum.filter(category => category.amount > 0)

@@ -17,7 +17,13 @@ export default async function Dashboard(): Promise<React.ReactElement> {
   const mappedCategories = await getMappedCategories(decodedToken.userId)
   const mappedEntries = await getMappedEntries(decodedToken.userId, mappedCategories, month, year)
 
+  console.log('mappedCategories', mappedCategories)
+  console.log('mappedEntries', mappedEntries)
+
   const { incomeSum, expenseSum } = getMonthlySummary({ mappedEntries, mappedCategories })
+
+  console.log('incomeSum', incomeSum)
+  console.log('expenseSum', expenseSum)
 
   if (expenseSum.length === 0 && incomeSum.length === 0) {
     return (

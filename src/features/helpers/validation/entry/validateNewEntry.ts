@@ -13,7 +13,9 @@ export type validateNewEntryOnServerProps = {
 }
 
 export const validateTitle = (title: string): boolean => {
-  return title.length < 3 || title.length > 20
+  if (title.length < 3) return false
+  if (title.length > 20) return false
+  return true
 }
 
 export const validateDate = (date: string): boolean => {
@@ -49,14 +51,17 @@ export const validateNewEntryOnServer = ({ newEntry }: validateNewEntryOnServerP
 
   if (!validateTitle(newEntry.title)) {
     validate = false
+    console.log('validateTitle')
   }
 
   if (!validateDate(newEntry.date)) {
     validate = false
+    console.log('validateDate')
   }
 
   if (!validateCategoryId(newEntry.categoryId)) {
     validate = false
+    console.log('validateCategoryId')
   }
 
   return validate

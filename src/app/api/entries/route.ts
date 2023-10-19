@@ -15,11 +15,11 @@ export async function POST(req: Request) {
   const { newEntry }: postReqProps = await req.json()
   const { title, amount, isExpense, categoryId, date } = newEntry
 
-  if (!title || !amount || !isExpense || !categoryId || !date) {
+  if (!title || !amount || typeof isExpense === 'undefined' || !categoryId || !date) {
     return NextResponse.json({ message: 'invalid_request' })
   }
 
-  if (validateNewEntryOnServer({ newEntry })) {
+  if (!validateNewEntryOnServer({ newEntry })) {
     return NextResponse.json({ message: 'invalid_request' })
   }
 

@@ -17,7 +17,6 @@ export const GraphSummary = (props: GraphSummaryProps) => {
 
   return (
     <div>
-      <h1>GraphSummary</h1>
       {props.isExpense ? (
         <>
           <div className={styles.graphContainer}>
@@ -30,7 +29,16 @@ export const GraphSummary = (props: GraphSummaryProps) => {
           </div>
         </>
       ) : (
-        'income'
+        <>
+          <div className={styles.graphContainer}>
+            <Pie data={income.graph} />
+          </div>
+          <div className={styles.summaryContainer}>
+            {income.data.map(item => (
+              <SummaryLine categoryName={item.name} amount={item.amount} key={item.name} />
+            ))}
+          </div>
+        </>
       )}
     </div>
   )

@@ -30,6 +30,7 @@ function* postEntrySaga(action: ReturnType<typeof entriesCallPost>) {
 
   if (response.message === 'invalid_request') {
     yield put(alertsAddNewAlert({ message: localization.en.entries.serverValidationError, severity: 'error' }))
+    yield put(entriesSetIsSubmittingFalse())
     return
   }
 
@@ -41,11 +42,13 @@ function* postEntrySaga(action: ReturnType<typeof entriesCallPost>) {
 
   if (response.message === 'unexpected_prisma_error') {
     yield put(alertsAddNewAlert({ message: localization.en.errors.networkError, severity: 'error' }))
+    yield put(entriesSetIsSubmittingFalse())
     return
   }
 
   if (response.message === 'network_error') {
     yield put(alertsAddNewAlert({ message: localization.en.errors.networkError, severity: 'error' }))
+    yield put(entriesSetIsSubmittingFalse())
     return
   }
 }
