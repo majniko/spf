@@ -7,7 +7,7 @@
 /.idea
 
 #github upload
-.env
+/.env
 
 # testing
 /coverage
