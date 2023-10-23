@@ -36,6 +36,7 @@ export const LoginForm = () => {
         className={styles.textField}
         variant={'filled'}
         id="password"
+        type="password"
         size={'small'}
         error={isError}
         value={password}
